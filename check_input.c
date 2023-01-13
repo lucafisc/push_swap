@@ -1,13 +1,8 @@
 #include "push_swap.h"
 
-void throw_error(void)
+bool	is_valid_number(char *str)
 {
-	ft_printf("Error");
-}
-
-int argument_is_invalid(char *str)
-{
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_is_sign(str[i]))
@@ -15,22 +10,64 @@ int argument_is_invalid(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			return (1);
+				return (false);
 		i++;
 	}
-	return (0);
+	return (true);
 }
 
-int input_is_invalid(int argc, char *argv[])
+bool	is_duplicated(int *array, int c, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (i < argc)
+	while (i < n)
 	{
-		if (argument_is_invalid(argv[i]))
-			return (1);
+		if (array[i] == c)
+			return (true);
 		i++;
 	}
-	return (0);
+	return (false);
+}
+
+bool	is_valid_integer(int n, char *argv[])
+{
+	int			*array;
+	int			i;
+	long int	x;
+	bool		is_valid;
+
+	is_valid = true;
+	array = (int *)malloc(sizeof(int) * n);
+	if (!array)
+		return (false);
+	i = 0;
+	while (i < n)
+	{
+		x = ft_atoli(argv[i + 1]);
+		if (x > INT_MAX || x < INT_MIN)
+			is_valid = false;
+		array[i] = x;
+		if (is_duplicated(array, array[i], i))
+			is_valid = false;
+		i++;
+	}
+	free(array);
+	return (is_valid);
+}
+
+bool	is_valid_input(int n, char *argv[])
+{
+	int	i;
+
+	i = 1;
+	while (i <= n)
+	{
+		if (!is_valid_number(argv[i]))
+			return (false);
+		i++;
+	}
+	if (!is_valid_integer(n, argv))
+		return (false);
+	return (true);
 }

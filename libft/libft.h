@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 17:35:35 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/10 11:30:30 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:33:17 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstdelone(t_list *lst, void (*del)(void*));
 void		ft_lstclear(t_list **lst, void (*del)(void*));
 void		ft_lstiter(t_list *lst, void (*f)(void *));
-int	ft_is_sign(char x);
+int			ft_is_sign(char x);
+t_list		*ft_lstnew_int(int content);
+long int	ft_atoli(const char *str);
+int			ft_is_space(char x);
 
 #endif

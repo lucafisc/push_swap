@@ -1,35 +1,37 @@
-FILES = main.c push_swap.c check_input.c
-OBJECTS = $(FILES:.c=.o)
+FILES = main.c push_swap.c check_input.c throw_error.c stack_utils.c
+OBJECTS = $(addprefix obj/, $(FILES:.c=.o))
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap.a
-PRINTF = $(PRINTF_PATH)/ft_printf.a
-PRINTF_PATH = ./ft_printf
-LIBFT = $(LIBFT_PATH)/libft.a
-LIBFT_PATH = ./libft
+PRINTF = ft_printf/ft_printf.a
+LIBFT = libft/libft.a
+INCLUDES = -I ft_printf/includes -I libft/includes
+MAKE = make -j4
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(PRINTF) $(OBJECTS)
-	$(CC) $(CFLAGS) $(LIBFT) $(PRINTF) $(FILES) -o a.out
+$(NAME): $(PRINTF) $(LIBFT) $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) $(PRINTF) $(LIBFT) $(INCLUDES) -o $(NAME)
 
 $(PRINTF):
-	make -C $(PRINTF_PATH) 
+	$(MAKE) -C ft_printf
 
 $(LIBFT):
-	make bonus -C $(LIBFT_PATH)
+	$(MAKE) -C libft
 
-%.o: %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+obj/%.o: %.c
+	mkdir -p obj
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
 
 clean:
-	make clean -C $(PRINTF_PATH) 
-	make clean -C $(LIBFT_PATH)
-	rm -f $(OBJECTS) $(B_OBJECTS)
+	$(MAKE) -C ft_printf clean
+	$(MAKE) -C libft clean
+	rm -f $(OBJECTS)
 
 fclean: clean
-	make fclean -C $(PRINTF_PATH) 
-	make fclean -C $(LIBFT_PATH)
+	$(MAKE) -C ft_printf fclean
+	$(MAKE) -C libft fclean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) all
