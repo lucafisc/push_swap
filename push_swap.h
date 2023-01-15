@@ -6,7 +6,7 @@
 /*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/13 18:11:29 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/14 12:34:33 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum { false, true } bool;
 typedef struct s_stack
 {
 	int value;
+	int index;
 	struct s_stack *next;
 } t_stack;
 
