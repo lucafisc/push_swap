@@ -6,11 +6,13 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/15 18:50:02 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/15 18:51:54 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// has to print last move indenpendently and free all the allcated memory.
 
 void	print_pairs(char **array)
 {
@@ -59,22 +61,4 @@ int	print_cmd(char *str)
 	else if (array[0][0] && array [1][0])
 		print_next_cmd(array);
     return (1);
-}
-
-int	main(void)
-{
-    print_cmd("sa");
-    print_cmd("sb");
-  	print_cmd("rb");
-    print_cmd("sa");
-	print_cmd("sb");
-	print_cmd("rb");
-	print_cmd("ra");
-	print_cmd("rrb");
-	print_cmd("rb");
-	print_cmd("rrb");
-	print_cmd("rra");	
-	print_cmd("sa");
-	print_cmd("sb");
-	return (0);
 }
