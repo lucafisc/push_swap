@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/14 12:34:33 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:55:58 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_stack
 	struct s_stack *next;
 } t_stack;
 
-int		main(int argc, char *argv[]);
+//int		main(int argc, char *argv[]);
 void	push_swap(int n, char *argv[]);
 bool	is_valid_input(int argc, char *argv[]);
 void	throw_error(void);
