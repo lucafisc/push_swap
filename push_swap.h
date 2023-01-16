@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 16:44:53 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:16:51 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	is_rrr(char **array);
 bool	are_pairs(char **array);
 
 //print command
-void	print_cmd(char *str);
+void print_cmd(char *str, bool is_last);
 
 //commands
 void	swap(t_stack **stack, char x);

@@ -6,11 +6,13 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:28:46 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 17:30:28 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:17:24 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// void	push(t_stack)
 
 void	swap(t_stack **stack, char x)
 {
@@ -23,9 +25,9 @@ void	swap(t_stack **stack, char x)
 	second->index = 0;
 	(*stack) = second;
 	if (x == 'a')
-		print_cmd("sa");
+		print_cmd("sa", false);
 	else
-		print_cmd("sb");
+		print_cmd("sb", false);
 }
 
 void	rotate(t_stack **stack, char x)
@@ -46,9 +48,9 @@ void	rotate(t_stack **stack, char x)
 	}
 	temp->index = get_stack_length(*stack) - 1;
 	if (x == 'a')
-		print_cmd("ra");
+		print_cmd("ra", false);
 	else
-		print_cmd("rb");
+		print_cmd("rb", false);
 }
 
 void	reverse_rotate(t_stack **stack, char x)
@@ -70,7 +72,7 @@ void	reverse_rotate(t_stack **stack, char x)
 		temp = temp->next;
 	}
 	if (x == 'a')
-		print_cmd("rra");
+		print_cmd("rra", false);
 	else
-		print_cmd("rrb");
+		print_cmd("rrb", false);
 }

@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 17:26:20 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:50:22 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,6 @@ void sort_three(t_stack *stack)
 		swap(&stack, 'a');
 		reverse_rotate(&stack, 'a');
 	}
-	else
-		ft_printf("Error: No case found!\n");
 }
 
 bool is_sorted(t_stack *stack)
@@ -155,4 +153,5 @@ void	push_swap(int length, char *argv[])
 		ft_printf("index of last: %d\n", last->index);
 		//sort_big(length, a);
 	}
+	print_cmd("", true);
 }
