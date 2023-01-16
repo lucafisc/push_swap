@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:28:46 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 17:18:34 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:30:28 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ void	swap(t_stack **stack, char x)
 
 	second = (*stack)->next;
 	(*stack)->index = 1;
-	(*stack)->next = second->next;
+	(*stack)->next = (*stack)->next->next;
 	second->next = *stack;
 	second->index = 0;
+	(*stack) = second;
 	if (x == 'a')
 		print_cmd("sa");
 	else

@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 17:05:01 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:26:20 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	push_swap(int length, char *argv[])
 	else
 	{
 		ft_printf("sort_big\n");
-		rotate(&a, 'a');
+		swap(&a, 'a');
 		ft_printf("value of first: %d\n", a->value);
 		ft_printf("index of first: %d\n", a->index);
 		ft_printf("value of second: %d\n", a->next->value);
