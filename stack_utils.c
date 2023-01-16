@@ -1,14 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
+/*   Updated: 2023/01/16 16:27:21 by lde-ross         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_stack	*new_stack(int value)
+t_stack	*new_stack(int value, unsigned int index)
 {
 	t_stack *stack;
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
 	stack->value = value;
+	stack->index = index;
 	stack->next = NULL;
 	return (stack);
+}
+
+t_stack	*stack_get_second_last(t_stack *stack)
+{
+	t_stack *scnd_last;
+
+	scnd_last = stack;
+	while (scnd_last && scnd_last->next->next)
+		scnd_last = scnd_last->next;
+	return (scnd_last);
 }
 
 t_stack	*stack_get_last(t_stack *stack)
@@ -57,9 +80,9 @@ t_stack *init_stack(int n, char *argv[])
 	{
 		number = ft_atoi(argv[i]);
 		if (i == 1)
-			stack = new_stack(number);
+			stack = new_stack(number, i - 1);
 		else
-			stack_add_back(stack, new_stack(number));
+			stack_add_back(stack, new_stack(number, i - 1));
 		i++;
 	}
 	return (stack);

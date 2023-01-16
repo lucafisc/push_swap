@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:16:48 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/07 19:56:29 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		i++;
 	return (i);
 }
-
-// int	main(void)
-// {
-// 	char source[] = "Hello";
-// 	char destination[6];
-// 	ft_strlcpy(destination, source, 5);
-// 	printf("%d", ft_strlcpy(destination, source, 3));
-// }

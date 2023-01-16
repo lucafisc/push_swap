@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 12:20:03 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/08 09:47:05 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	*dst = '\0';
 	return (slen + dlen);
 }
-
-// int main()
-// {
-// 	char s[] = "Hello";
-// 	char d[99] = "Hi";
-// 	ft_strlcat(d, s, 99);
-// 	printf("%s", d);
-// }

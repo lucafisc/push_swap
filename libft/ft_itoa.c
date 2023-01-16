@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 12:03:36 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/11 17:09:29 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,3 @@ char	*ft_itoa(int n)
 	str_rev(pt);
 	return (pt);
 }
-
-// int	main(void)
-// {
-// 	char *pt;
-// 	pt = ft_itoa(0);
-// 	printf("%s\n", pt);
-// }

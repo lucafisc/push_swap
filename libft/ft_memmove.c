@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:33:31 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/07 19:54:26 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,3 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	return (dst);
 }
-
-// int main ()
-// {
-//   char s1[] = "Hello, lorem ipsum dolum amet";
-//   ft_memmove(s1, s1 + 99, 1);
-//   return 0;
-// }

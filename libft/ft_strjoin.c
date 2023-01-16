@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 14:55:47 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/09 12:20:52 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	pt[i] = '\0';
 	return (pt);
 }
-
-// int main(void)
-// {
-// 	char str1[] = "How are you?";
-// 	char str2[] = " Good and you?";
-// 	char *my_str = ft_strjoin(str1, str2);
-// 	printf("%s", my_str);
-// }

@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/15 19:08:52 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:43:34 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**init_array()
 	return (array);
 }
 
-int	print_cmd(char *str)
+void	print_cmd(char *str)
 {
     static char    **array;
 
@@ -66,5 +66,4 @@ int	print_cmd(char *str)
 	}
 	else if (array[0][0] && array [1][0])
 		print_next_cmd(array);
-    return (1);
 }

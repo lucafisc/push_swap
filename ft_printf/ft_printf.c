@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:37:05 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/16 15:47:26 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,3 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (size);
 }
-
-// int	main(void)
-// {
-// 	char *pt;
-// 	char hi[] = " Hello";
-// 	pt = hi;
-// 	ft_printf("my printf:\n %p \n", pt);
-// }

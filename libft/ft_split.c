@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 10:46:28 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/12 16:26:49 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,3 @@ char	**ft_split(char const *s, char c)
 	arr[words] = NULL;
 	return (arr);
 }
-
-// int	main(void)
-// {
-// 	char my_str[] = "losmod non, mi.";
-// 	char **ar;
-// 	int	i;
-// 	i = 0;
-// 	ar = ft_split(my_str, 'i');
-// 	while (ar[i])
-// 	{
-// 	printf("%s\n", ar[i]);
-// 		i++;
-// 	}
-// }

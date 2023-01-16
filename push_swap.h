@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/15 18:36:55 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:44:53 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,20 @@
 typedef enum { false, true } bool;
 typedef struct s_stack
 {
-	int value;
-	int index;
+	int				value;
+	unsigned int	index;
 	struct s_stack *next;
 } t_stack;
 
-//int		main(int argc, char *argv[]);
+int		main(int argc, char *argv[]);
 void	push_swap(int n, char *argv[]);
 bool	is_valid_input(int argc, char *argv[]);
 void	throw_error(void);
+
+//stack utils
 t_stack	*init_stack(int n, char *argv[]);
+t_stack	*stack_get_last(t_stack *stack);
+t_stack	*stack_get_second_last(t_stack *stack);
 int		get_stack_length(t_stack *stack);
 int		get_stack_middle(t_stack *stack);
 
@@ -42,6 +46,12 @@ bool	is_rr(char **array);
 bool	is_rrr(char **array);
 bool	are_pairs(char **array);
 
+//print command
+void	print_cmd(char *str);
 
+//commands
+void	swap(t_stack **stack, char x);
+void	rotate(t_stack **stack, char x);
+void	reverse_rotate(t_stack **stack, char x);
 
 #endif

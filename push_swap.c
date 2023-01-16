@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
+/*   Updated: 2023/01/16 17:05:01 by lde-ross         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 // t_list* find_smallest(t_list *lst)
@@ -42,10 +54,70 @@ int	get_range(t_stack *stack)
 	return (range);
 }
 
-// void sort_three(length, a)
-// {
+unsigned int	get_max_index(t_stack *stack)
+{
+		int				value;
+		unsigned int	index;
 
-// }
+		value = stack->value;
+		index = stack->index;
+	while (stack)
+	{
+		if (value < stack->value)
+		{
+			value = stack->value;
+			index = stack->index;
+		}
+		stack = stack->next;
+	}
+	return (index);
+}
+
+unsigned int	get_min_index(t_stack *stack)
+{
+		int				value;
+		unsigned int	index;
+
+		value = stack->value;
+		index = stack->index;
+	while (stack)
+	{
+		if (value > stack->value)
+		{
+			value = stack->value;
+			index = stack->index;
+		}
+		stack = stack->next;
+	}
+	return (index);
+}
+
+void sort_three(t_stack *stack)
+{
+	unsigned int	max_index;
+	unsigned int	min_index;
+
+	max_index = get_max_index(stack);
+	min_index = get_min_index(stack);
+	if (max_index == 2 && min_index == 1)
+		swap(&stack, 'a');
+	else if (max_index == 0 && min_index == 1)
+		rotate(&stack, 'a');
+	else if (max_index == 1 && min_index == 2)
+		reverse_rotate(&stack, 'a');
+	else if (max_index == 1 && min_index == 0)
+	{
+		swap(&stack, 'a');
+		rotate(&stack, 'a');
+	}
+	else if (max_index == 0 && min_index == 2)
+	{
+		swap(&stack, 'a');
+		reverse_rotate(&stack, 'a');
+	}
+	else
+		ft_printf("Error: No case found!\n");
+}
 
 bool is_sorted(t_stack *stack)
 {
@@ -61,17 +133,26 @@ bool is_sorted(t_stack *stack)
 void	push_swap(int length, char *argv[])
 {
 	t_stack	*a;
+	t_stack	*last;
 	a = init_stack(length, argv);
 	if (is_sorted(a))
-		ft_printf("is sorted!");
+		ft_printf("is sorted!\n");
 	else if (length <= 3)
 	{
-		ft_printf("sort_small");
-		//sort_three(length, a);
+		ft_printf("sort_small\n");
+		sort_three(a);
 	}
 	else
 	{
-		ft_printf("sort_big");
+		ft_printf("sort_big\n");
+		rotate(&a, 'a');
+		ft_printf("value of first: %d\n", a->value);
+		ft_printf("index of first: %d\n", a->index);
+		ft_printf("value of second: %d\n", a->next->value);
+		ft_printf("index of second: %d\n", a->next->index);
+		last = stack_get_last(a);
+		ft_printf("value of last: %d\n", last->value);
+		ft_printf("index of last: %d\n", last->index);
 		//sort_big(length, a);
 	}
 }

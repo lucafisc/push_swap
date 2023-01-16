@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 09:46:35 by lde-ross          #+#    #+#             */
-/*   Updated: 2022/12/09 12:14:57 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:02:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,3 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	pt[i] = '\0';
 	return (pt);
 }
-
-// char fun_function(unsigned int i, char c)
-// {
-//     return (c + i);
-// }
-
-// int main()
-// {
-//     char my_str[] = "Hdjik";
-//     char *pt;
-//     pt = ft_strmapi(my_str, fun_function);
-//     printf("%s", pt);
-// }

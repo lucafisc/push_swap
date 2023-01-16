@@ -1,4 +1,4 @@
-FILES = main.c push_swap.c check_input.c throw_error.c stack_utils.c
+FILES = main.c push_swap.c check_input.c throw_error.c stack_utils.c commands.c print_cmd.c cmd_cmp.c
 OBJECTS = $(addprefix obj/, $(FILES:.c=.o))
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
