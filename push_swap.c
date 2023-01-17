@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 18:50:22 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:49:15 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,5 @@ void	push_swap(int length, char *argv[])
 		ft_printf("index of last: %d\n", last->index);
 		//sort_big(length, a);
 	}
-	print_cmd("", true);
+	test_print_cmd("");
 }

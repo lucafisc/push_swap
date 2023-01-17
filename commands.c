@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:28:46 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 18:17:24 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:49:53 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	swap(t_stack **stack, char x)
 	second->index = 0;
 	(*stack) = second;
 	if (x == 'a')
-		print_cmd("sa", false);
+		test_print_cmd("sa");
 	else
-		print_cmd("sb", false);
+		test_print_cmd("sb");
 }
 
 void	rotate(t_stack **stack, char x)
@@ -48,9 +48,9 @@ void	rotate(t_stack **stack, char x)
 	}
 	temp->index = get_stack_length(*stack) - 1;
 	if (x == 'a')
-		print_cmd("ra", false);
+		test_print_cmd("ra");
 	else
-		print_cmd("rb", false);
+		test_print_cmd("rb");
 }
 
 void	reverse_rotate(t_stack **stack, char x)
@@ -72,7 +72,7 @@ void	reverse_rotate(t_stack **stack, char x)
 		temp = temp->next;
 	}
 	if (x == 'a')
-		print_cmd("rra", false);
+		test_print_cmd("rra");
 	else
-		print_cmd("rrb", false);
+		test_print_cmd("rrb");
 }

@@ -1,0 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_print_cmd.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
+/*   Updated: 2023/01/16 22:51:52 by lde-ross         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+bool test_is_ss(char *str1, char *str2)
+{
+	if ((!ft_strncmp(str1, "sa", 2) && !ft_strncmp(str2, "sb", 2)) || (!ft_strncmp(str1, "sb", 2) && !ft_strncmp(str2, "sa", 2)))
+		return (true);
+	return (false);
+}
+
+bool test_is_rr(char *str1, char *str2)
+{
+	if ((!ft_strncmp(str1, "ra", 2) && !ft_strncmp(str2, "rb", 2)) || (!ft_strncmp(str1, "rb", 2) && !ft_strncmp(str2, "ra", 2)))
+		return (true);
+	return (false);
+}
+
+bool test_is_rrr(char *str1, char *str2)
+{
+	if ((!ft_strncmp(str1, "rra", 3) && !ft_strncmp(str2, "rrb", 3)) || (!ft_strncmp(str1, "rrb", 3) && !ft_strncmp(str2, "rra", 3)))
+		return (true);
+	return (false);
+}
+
+bool test_are_pairs(char *str1, char *str2)
+{
+	if (test_is_ss(str1, str2) || test_is_rr(str1, str2) || test_is_rrr(str1, str2))
+		return (true);
+	return (false);
+}
+
+void test_print_pairs(char *str1, char *str2)
+{
+	if (test_is_ss(str1, str2))
+		ft_printf("ss\n");
+	else if (test_is_rr(str1, str2))
+		ft_printf("rr\n");
+	else if (test_is_rrr(str1, str2))
+		ft_printf("rrr\n");
+}
+
+void test_print_cmd(char *str)
+{
+	static char *cmd;
+
+	if (!str && cmd)
+	{
+		ft_printf("%s\n", cmd);
+		free(cmd);
+	}
+	else if (!cmd)
+		cmd = ft_strdup(str);
+	else if (test_are_pairs(cmd, str))
+	{
+		test_print_pairs(cmd, str);
+		free(cmd);
+	}
+	else
+	{
+		ft_printf("%s\n", cmd);
+		free(cmd);
+		cmd = ft_strdup(str);
+	}
+}

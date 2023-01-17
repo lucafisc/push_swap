@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 18:16:51 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:28:36 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ void print_cmd(char *str, bool is_last);
 void	swap(t_stack **stack, char x);
 void	rotate(t_stack **stack, char x);
 void	reverse_rotate(t_stack **stack, char x);
+
+void test_print_cmd(char *str);
 
 #endif
