@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 14:39:26 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:39:10 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	clear_stack(t_stack **stack);
 void print_cmd(char *str);
 
 //commands
+void	push(t_stack **src, t_stack **dest, char x);
 void	swap(t_stack **stack, char x);
 void	rotate(t_stack **stack, char x);
 void	reverse_rotate(t_stack **stack, char x);

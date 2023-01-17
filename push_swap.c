@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 14:40:20 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 15:58:26 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,28 +92,28 @@ unsigned int	get_min_index(t_stack *stack)
 	return (index);
 }
 
-void sort_three(t_stack *stack)
+void sort_three(t_stack **stack)
 {
 	unsigned int	max_index;
 	unsigned int	min_index;
 
-	max_index = get_max_index(stack);
-	min_index = get_min_index(stack);
+	max_index = get_max_index(*stack);
+	min_index = get_min_index(*stack);
 	if (max_index == 2 && min_index == 1)
-		swap(&stack, 'a');
+		swap(stack, 'a');
 	else if (max_index == 0 && min_index == 1)
-		rotate(&stack, 'a');
+		rotate(stack, 'a');
 	else if (max_index == 1 && min_index == 2)
-		reverse_rotate(&stack, 'a');
+		reverse_rotate(stack, 'a');
 	else if (max_index == 1 && min_index == 0)
 	{
-		swap(&stack, 'a');
-		rotate(&stack, 'a');
+		swap(stack, 'a');
+		rotate(stack, 'a');
 	}
 	else if (max_index == 0 && min_index == 2)
 	{
-		swap(&stack, 'a');
-		reverse_rotate(&stack, 'a');
+		swap(stack, 'a');
+		reverse_rotate(stack, 'a');
 	}
 }
 
@@ -128,29 +128,51 @@ bool is_sorted(t_stack *stack)
 	return (true);
 }
 
+void	sort_five(t_stack **a)
+{
+	t_stack	*b;
+	b = NULL;
+	push(a, &b, 'b');
+	push(a, &b, 'b');
+	sort_three(a);
+	ft_printf("value of first a: %d\n", (*a)->value);
+	while (b->value > (*a)->value)
+		rotate(a, 'a');
+	push(&b, a, 'a');
+	while (b->value > (*a)->value)
+		rotate(a, 'a');
+	push(&b, a, 'a');
+	
+	clear_stack(&b);
+}
+
 void	push_swap(int length, char *argv[])
 {
 	t_stack	*a;
-	t_stack	*last;
+	// t_stack	*last;
 	a = init_stack(length, argv);
 	if (is_sorted(a))
 		ft_printf("is sorted!\n");
 	else if (length <= 3)
 	{
 		ft_printf("sort_small\n");
-		sort_three(a);
+		sort_three(&a);
+	}
+	else if (length <= 5)
+	{
+		sort_five(&a);
 	}
 	else
 	{
 		ft_printf("sort_big\n");
-		rotate(&a, 'a');
-		ft_printf("value of first: %d\n", a->value);
-		ft_printf("index of first: %d\n", a->index);
-		ft_printf("value of second: %d\n", a->next->value);
-		ft_printf("index of second: %d\n", a->next->index);
-		last = stack_get_last(a);
-		ft_printf("value of last: %d\n", last->value);
-		ft_printf("index of last: %d\n", last->index);
+		// rotate(&a, 'a');
+		// ft_printf("value of first: %d\n", a->value);
+		// ft_printf("index of first: %d\n", a->index);
+		// ft_printf("value of second: %d\n", a->next->value);
+		// ft_printf("index of second: %d\n", a->next->index);
+		// last = stack_get_last(a);
+		// ft_printf("value of last: %d\n", last->value);
+		// ft_printf("index of last: %d\n", last->index);
 		//sort_big(length, a);
 	}
 	print_cmd(" ");
