@@ -3,64 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 19:20:44 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/18 00:21:25 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// t_list* find_smallest(t_list *lst)
-// {
-// 	t_list	*smallest;
-// 	int	n;
-
-// 	if (!lst)
-// 		return (0);
-// 	n = *(int*)lst->content;
-// 	smallest = lst;
-// 	while (lst)
-// 	{
-// 		if (*(int*)lst->content > n)
-// 			{
-// 				n = *(int*)lst->content;
-// 				smallest = lst;
-// 			}
-// 		lst = lst->next;
-// 	}
-// 	return (smallest);
-
-// }
-
-int	get_range(t_stack *stack)
+unsigned int get_max_index(t_stack *stack)
 {
-	int	lowest;
-	int	highest;
-	int	range;
+	int value;
+	unsigned int index;
 
-	lowest = stack->value;
-	highest = stack->value;
-	while (stack)
-	{
-		if (lowest > stack->value)
-			lowest = stack->value;
-		if (highest < stack->value)
-			highest = stack->value;
-		stack = stack->next;
-	}
-	range = highest - lowest;
-	return (range);
-}
-
-unsigned int	get_max_index(t_stack *stack)
-{
-		int				value;
-		unsigned int	index;
-
-		value = stack->value;
-		index = stack->index;
+	value = stack->value;
+	index = stack->index;
 	while (stack)
 	{
 		if (value < stack->value)
@@ -73,13 +31,13 @@ unsigned int	get_max_index(t_stack *stack)
 	return (index);
 }
 
-unsigned int	get_min_index(t_stack *stack)
+unsigned int get_min_index(t_stack *stack)
 {
-		int				value;
-		unsigned int	index;
+	int value;
+	unsigned int index;
 
-		value = stack->value;
-		index = stack->index;
+	value = stack->value;
+	index = stack->index;
 	while (stack)
 	{
 		if (value > stack->value)
@@ -90,6 +48,46 @@ unsigned int	get_min_index(t_stack *stack)
 		stack = stack->next;
 	}
 	return (index);
+}
+
+int get_min_value(t_stack *stack)
+{
+	int value;
+
+	value = stack->value;
+	while (stack)
+	{
+		if (value > stack->value)
+			value = stack->value;
+		stack = stack->next;
+	}
+	return (value);
+}
+
+int get_max_value(t_stack *stack)
+{
+	int value;
+
+	value = stack->value;
+	while (stack)
+	{
+		if (value < stack->value)
+			value = stack->value;
+		stack = stack->next;
+	}
+	return (value);
+}
+
+int	get_range(t_stack *stack)
+{
+	int	lowest;
+	int	highest;
+	int	range;
+
+	lowest = get_min_value(stack);
+	highest = get_max_index(stack);
+	range = highest - lowest;
+	return (range);
 }
 
 void sort_three(t_stack **stack)
@@ -183,14 +181,14 @@ sort_params	find_info_last_match(t_stack *stack, int key)
 	return (last);
 }
 
-sort_params	find_cheapest_move(t_stack *stack, int key)
+sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 {
 	int	middle;
 	sort_params first;
 	sort_params last;
 
-	first = find_info_first_match(stack, key);
-	last = find_info_last_match(stack, key);
+	first = find_info_first_match(stack, ceiling);
+	last = find_info_last_match(stack, ceiling);
 	middle = get_stack_middle(stack);
 	if (middle - first.index > last.index - middle)
 		return (first);
@@ -198,23 +196,48 @@ sort_params	find_cheapest_move(t_stack *stack, int key)
 		return (last);
 }
 
+void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
+{
+	while ((*a)->value != instructions.value)
+	{
+		if (instructions.rotate)
+			rotate(a, 'a');
+		else
+			reverse_rotate(a, 'a');
+	}
+	push(a, b, 'b');
+}
+
 void	sort_big(t_stack **a, int	length)
 {
 	t_stack	*b;
 	int		range;
-	int		key;
+	int		ceiling;
 	int		ratio;
-	int		middle;
-	int		number_to_be_moved;
 	sort_params	instructions;
 	
 	ratio = 25; //ratio defines the amount of chunks
 	b = NULL;
 	range = get_range(*a);
-	key = range / (length / ratio);
-	middle = get_stack_middle(*a);
-	instructions = find_cheapest_move(*a, key);
-	
+	ceiling = get_min_value(*a) + (range / (length / ratio));
+	instructions = find_cheapest_move(*a, ceiling);
+	// while (there is stuff in a)
+	// {
+	// 	while (instructions.there_is_number)
+	// 	{
+	// 		move_to_b(a, &b, instructions);
+	// 		instructions = find_cheapest_move(*a, ceiling);
+	// 	}
+	// 	ceiling = ceiling + (range / (length / ratio));
+	// 	instructions = find_cheapest_move(*a, ceiling);
+	// }
+
+	move_to_b(a, &b, instructions);
+	ft_printf("range: %d / (length: / ratio: %d)\n", range, length / ratio);
+	ft_printf("ceiling: %d\n", ceiling);
+	ft_printf("index: %u, value: %d\n", instructions.index, instructions.value);
+	ft_printf("value of b index 0: %d\n", b->value);
+	ft_printf("value of a index 0: %d\n", (*a)->value);
 }
 
 void	push_swap(int length, char *argv[])
