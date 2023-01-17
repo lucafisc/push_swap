@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 15:39:10 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:16:46 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@
 # include <limits.h>
 
 typedef enum { false, true } bool;
+
 typedef struct s_stack
 {
 	int				value;
 	unsigned int	index;
 	struct s_stack *next;
 } t_stack;
+
+typedef struct {
+  int	value;
+  unsigned int	index;
+  bool	rotate;
+} sort_params;
 
 int		main(int argc, char *argv[]);
 void	push_swap(int n, char *argv[]);

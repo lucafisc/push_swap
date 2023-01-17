@@ -2,6 +2,8 @@
 	"files.associations": {
 		"push_swap.h": "c",
 		"__tuple": "c",
-		"array": "c"
+		"array": "c",
+		"ft_printf.h": "c",
+		"libft.h": "c"
 	}
 }

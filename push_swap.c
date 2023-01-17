@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 15:58:26 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:20:44 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,77 @@ void	sort_five(t_stack **a)
 	clear_stack(&b);
 }
 
+sort_params	find_info_first_match(t_stack *stack, int key)
+{
+	sort_params first;
+	first.rotate = true;
+
+	first.index = 0;
+	while (stack)
+	{
+		if (stack->value <= key)
+		{
+			first.index = stack->index;
+			first.value = stack->value;
+			return (first);
+		}
+		stack = stack->next;
+	}
+	return (first);
+}
+
+sort_params	find_info_last_match(t_stack *stack, int key)
+{
+	sort_params	last;
+	last.rotate = false;
+	
+	last.index = 0;
+	while (stack)
+	{
+		if (stack->value <= key)
+		{
+			last.index = stack->index;
+			last.value = stack->value;
+		}
+		stack = stack->next;
+	}
+	return (last);
+}
+
+sort_params	find_cheapest_move(t_stack *stack, int key)
+{
+	int	middle;
+	sort_params first;
+	sort_params last;
+
+	first = find_info_first_match(stack, key);
+	last = find_info_last_match(stack, key);
+	middle = get_stack_middle(stack);
+	if (middle - first.index > last.index - middle)
+		return (first);
+	else
+		return (last);
+}
+
+void	sort_big(t_stack **a, int	length)
+{
+	t_stack	*b;
+	int		range;
+	int		key;
+	int		ratio;
+	int		middle;
+	int		number_to_be_moved;
+	sort_params	instructions;
+	
+	ratio = 25; //ratio defines the amount of chunks
+	b = NULL;
+	range = get_range(*a);
+	key = range / (length / ratio);
+	middle = get_stack_middle(*a);
+	instructions = find_cheapest_move(*a, key);
+	
+}
+
 void	push_swap(int length, char *argv[])
 {
 	t_stack	*a;
@@ -173,7 +244,7 @@ void	push_swap(int length, char *argv[])
 		// last = stack_get_last(a);
 		// ft_printf("value of last: %d\n", last->value);
 		// ft_printf("index of last: %d\n", last->index);
-		//sort_big(length, a);
+		sort_big(&a, length);
 	}
 	print_cmd(" ");
 	clear_stack(&a);
