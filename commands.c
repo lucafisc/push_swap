@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:28:46 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 22:49:53 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:39:59 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	push(t_stack)
+void	push(t_stack **src, t_stack **dest, char x)
+{
+	t_stack	*temp;
+
+	if (!(*src)->value)
+		return ;
+	temp = (*src);
+	(*src) = (*src)->next;
+	temp->next = (*dest);
+	(*dest) = temp;
+	stack_update_index(src);
+	stack_update_index(dest);
+	if (x == 'a')
+		print_cmd("pa");
+	else
+		print_cmd("pb");
+}
 
 void	swap(t_stack **stack, char x)
 {
@@ -25,9 +41,9 @@ void	swap(t_stack **stack, char x)
 	second->index = 0;
 	(*stack) = second;
 	if (x == 'a')
-		test_print_cmd("sa");
+		print_cmd("sa");
 	else
-		test_print_cmd("sb");
+		print_cmd("sb");
 }
 
 void	rotate(t_stack **stack, char x)
@@ -40,17 +56,11 @@ void	rotate(t_stack **stack, char x)
 	last->next = *stack;
 	(*stack) = (*stack)->next;
 	temp->next = NULL;
-	temp = *stack;
-	while (temp->next)
-	{
-		temp->index -= 1;
-		temp = temp->next;
-	}
-	temp->index = get_stack_length(*stack) - 1;
+	stack_update_index(stack);
 	if (x == 'a')
-		test_print_cmd("ra");
+		print_cmd("ra");
 	else
-		test_print_cmd("rb");
+		print_cmd("rb");
 }
 
 void	reverse_rotate(t_stack **stack, char x)
@@ -65,14 +75,9 @@ void	reverse_rotate(t_stack **stack, char x)
 	temp = *stack;
 	*stack = last;
 	(*stack)->next = temp;
-	(*stack)->index = 0;
-	while (temp)
-	{
-		temp->index += 1;
-		temp = temp->next;
-	}
+	stack_update_index(stack);
 	if (x == 'a')
-		test_print_cmd("rra");
+		print_cmd("rra");
 	else
-		test_print_cmd("rrb");
+		print_cmd("rrb");
 }

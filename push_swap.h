@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 22:28:36 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:39:26 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,16 @@ t_stack	*stack_get_last(t_stack *stack);
 t_stack	*stack_get_second_last(t_stack *stack);
 int		get_stack_length(t_stack *stack);
 int		get_stack_middle(t_stack *stack);
-
-//command compare
-bool	is_ss(char **array);
-bool	is_rr(char **array);
-bool	is_rrr(char **array);
-bool	are_pairs(char **array);
+void	stack_update_index(t_stack **stack);
+void	clear_stack(t_stack **stack);
 
 //print command
-void print_cmd(char *str, bool is_last);
+void print_cmd(char *str);
 
 //commands
 void	swap(t_stack **stack, char x);
 void	rotate(t_stack **stack, char x);
 void	reverse_rotate(t_stack **stack, char x);
 
-void test_print_cmd(char *str);
 
 #endif

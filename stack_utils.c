@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 16:27:21 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:32:25 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ t_stack	*new_stack(int value, unsigned int index)
 	stack->index = index;
 	stack->next = NULL;
 	return (stack);
+}
+
+void	stack_update_index(t_stack **stack)
+{
+	t_stack			*temp;
+	unsigned int	i;
+
+	i = 0;
+	temp = *stack;
+	while (temp)
+	{
+		temp->index = i;
+		temp = temp->next;
+		i++;
+	}
 }
 
 t_stack	*stack_get_second_last(t_stack *stack)
@@ -68,6 +83,22 @@ int	get_stack_middle(t_stack *stack)
 {
 	return (get_stack_length(stack) / 2);
 }
+
+void	clear_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	if (stack == NULL)
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+	*stack = NULL;
+}
+
 
 t_stack *init_stack(int n, char *argv[])
 {

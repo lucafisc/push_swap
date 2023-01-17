@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 22:49:15 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:40:20 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	push_swap(int length, char *argv[])
 	else
 	{
 		ft_printf("sort_big\n");
-		swap(&a, 'a');
+		rotate(&a, 'a');
 		ft_printf("value of first: %d\n", a->value);
 		ft_printf("index of first: %d\n", a->index);
 		ft_printf("value of second: %d\n", a->next->value);
@@ -153,5 +153,6 @@ void	push_swap(int length, char *argv[])
 		ft_printf("index of last: %d\n", last->index);
 		//sort_big(length, a);
 	}
-	test_print_cmd("");
+	print_cmd(" ");
+	clear_stack(&a);
 }

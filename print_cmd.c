@@ -6,85 +6,70 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 18:55:55 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:39:28 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// has to print last move indenpendently and free all the allcated memory.
-
-void print_pairs(char **array)
+bool is_ss(char *str1, char *str2)
 {
-	if (is_ss(array))
+	if ((!ft_strncmp(str1, "sa", 2) && !ft_strncmp(str2, "sb", 2)) || (!ft_strncmp(str1, "sb", 2) && !ft_strncmp(str2, "sa", 2)))
+		return (true);
+	return (false);
+}
+
+bool is_rr(char *str1, char *str2)
+{
+	if ((!ft_strncmp(str1, "ra", 2) && !ft_strncmp(str2, "rb", 2)) || (!ft_strncmp(str1, "rb", 2) && !ft_strncmp(str2, "ra", 2)))
+		return (true);
+	return (false);
+}
+
+bool is_rrr(char *str1, char *str2)
+{
+	if ((!ft_strncmp(str1, "rra", 3) && !ft_strncmp(str2, "rrb", 3)) || (!ft_strncmp(str1, "rrb", 3) && !ft_strncmp(str2, "rra", 3)))
+		return (true);
+	return (false);
+}
+
+bool are_pairs(char *str1, char *str2)
+{
+	if (is_ss(str1, str2) || is_rr(str1, str2) || is_rrr(str1, str2))
+		return (true);
+	return (false);
+}
+
+void print_pairs(char *str1, char *str2)
+{
+	if (is_ss(str1, str2))
 		ft_printf("ss\n");
-	else if (is_rr(array))
+	else if (is_rr(str1, str2))
 		ft_printf("rr\n");
-	else if (is_rrr(array))
+	else if (is_rrr(str1, str2))
 		ft_printf("rrr\n");
 }
 
-void print_next_cmd(char **array)
+void print_cmd(char *str)
 {
-	ft_printf("%s\n", array[1]);
-	array[1] = ft_memcpy(array[1], array[0], 3);
-	free(array[0]);
-}
+	static char *cmd;
 
-char **init_array()
-{
-	char **array;
-
-	array = malloc(sizeof(char *) * 2);
-	if (!array)
-		return (NULL);
-	return (array);
-}
-
-void	free_double_pointer(char **array, int size)
-{
-	int	i;
-
-	i = 0;
-	while (i < size)
+	if (ft_strchr(str, ' ') && cmd)
 	{
-		if(array[i])
-			free(array[i]);
-		i++;
+		ft_printf("%s\n", cmd);
+		free(cmd);
 	}
-	free(array);
-}
-
-void print_cmd(char *str, bool is_last)
-{
-	static char **array;
-
-	if (!array)
-		array = init_array();
-	if (!array[0][0])
+	else if (!cmd)
+		cmd = ft_strdup(str);
+	else if (are_pairs(cmd, str))
 	{
-		array[0] = ft_calloc(sizeof(char), 4);
-		array[0] = ft_memcpy(array[0], str, 3);
+		print_pairs(cmd, str);
+		free(cmd);
 	}
-	else if (!array[1][0])
+	else
 	{
-		array[1] = ft_calloc(sizeof(char), 4);
-		array[1] = ft_memcpy(array[1], array[0], 3);
-		free(array[0]);
-		array[0] = ft_calloc(sizeof(char), 4);
-		array[0] = ft_memcpy(array[0], str, 3);
-	}
-	if (are_pairs(array))
-	{
-		print_pairs(array);
-		free_double_pointer(array, 2);
-	}
-	else if (array[0][0] && array[1][0])
-		print_next_cmd(array);
-	if (is_last)
-	{
-		if (array[1][0])
-			ft_printf("%s\n", array[1]);
-		free_double_pointer(array, 2);
+		ft_printf("%s\n", cmd);
+		free(cmd);
+		cmd = ft_strdup(str);
 	}
 }
