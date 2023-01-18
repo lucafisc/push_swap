@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 14:32:25 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:21:37 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*new_stack(int value, unsigned int index)
+t_stack	*new_stack(int value, int index)
 {
 	t_stack *stack;
 	stack = malloc(sizeof(t_stack));
@@ -27,7 +27,7 @@ t_stack	*new_stack(int value, unsigned int index)
 void	stack_update_index(t_stack **stack)
 {
 	t_stack			*temp;
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	temp = *stack;

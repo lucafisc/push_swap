@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 14:39:28 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:22:48 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,29 @@ void print_cmd(char *str)
 {
 	static char *cmd;
 
+	count++;
 	if (ft_strchr(str, ' ') && cmd)
 	{
 		ft_printf("%s\n", cmd);
 		free(cmd);
 	}
 	else if (!cmd)
+	{
 		cmd = ft_strdup(str);
+		ft_printf("\n\nallocating space for %s\n\n", cmd);
+	}
 	else if (are_pairs(cmd, str))
 	{
+		ft_printf("\nare pairs!!!\n");
 		print_pairs(cmd, str);
-		free(cmd);
+		ft_printf("\nfreeing memory from %s!!!\n", cmd);
+		//free(cmd); is throwing an error as double free
 	}
 	else
 	{
 		ft_printf("%s\n", cmd);
 		free(cmd);
 		cmd = ft_strdup(str);
+		ft_printf("\n\nallocating space for %s\n\n", cmd);
 	}
 }

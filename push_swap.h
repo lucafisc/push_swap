@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/17 19:16:46 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:21:11 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,18 @@ typedef enum { false, true } bool;
 typedef struct s_stack
 {
 	int				value;
-	unsigned int	index;
+	int	index;
 	struct s_stack *next;
 } t_stack;
 
 typedef struct {
   int	value;
-  unsigned int	index;
+  int	index;
   bool	rotate;
+  bool found;
 } sort_params;
+
+extern int count;
 
 int		main(int argc, char *argv[]);
 void	push_swap(int n, char *argv[]);
