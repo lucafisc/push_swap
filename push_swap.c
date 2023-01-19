@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/18 19:43:50 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:52:00 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,19 +199,19 @@ sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 	first = find_info_first_match(stack, ceiling);
 	last = find_info_last_match(stack, ceiling);
 	middle = get_stack_middle(stack);
-	ft_printf("middle(%d) - first.index(%d) = (%d) > last.index(%d) - middle(%d) = (%d) ?\n",middle, first.index, middle - first.index, last.index, middle, last.index - middle);
+	//ft_printf("middle(%d) - first.index(%d) = (%d) > last.index(%d) - middle(%d) = (%d) ?\n",middle, first.index, middle - first.index, last.index, middle, last.index - middle);
 	if (first.found)
 		ft_printf("first found!\n");
 	if (last.found)
 		ft_printf("last found!\n");
 	if (middle - first.index > last.index - middle && first.found)
 	{
-		ft_printf("returning first: value: %d index: %u\n", first.value, first.index);
+		//ft_printf("returning first: value: %d index: %u\n", first.value, first.index);
 		return (first);
 	}
 	else
 	{
-		ft_printf("returning last: value: %d index: %u\n", last.value, last.index);
+		//ft_printf("returning last: value: %d index: %u\n", last.value, last.index);
 		return (last);
 	}
 }
@@ -224,12 +224,11 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 	{
 		if (instructions.rotate)
 		{
-			//optimisation?? 
-			if ((*a)->next->value == instructions.value && (*b)->value < (*b)->next->value)
+			// optimisation?? protect if be was not initialized
+			if (b && *b && (*b)->next && (*a)->next->value == instructions.value && (*b)->value < (*b)->next->value)
 			{
 				swap(a, 'a');
 				swap(b, 'b');
-				count--;
 			}
 			else
 				rotate(a, 'a');
@@ -277,6 +276,8 @@ void	sort_big(t_stack **a, int length)
 	// ft_printf("index: %u, value: %d\n", instructions.index, instructions.value);
 	// ft_printf("value of b index 0: %d\n", b->value);
 	// ft_printf("value of a index 0: %d\n", (*a)->value);
+		clear_stack(&b);
+
 }
 
 void	push_swap(int length, char *argv[])

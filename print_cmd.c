@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/18 19:22:48 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:44:47 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ void print_cmd(char *str)
 		ft_printf("\nare pairs!!!\n");
 		print_pairs(cmd, str);
 		ft_printf("\nfreeing memory from %s!!!\n", cmd);
-		//free(cmd); is throwing an error as double free
+		// is throwing an error as double free
+		free(cmd);
+		cmd = NULL;
 	}
 	else
 	{
