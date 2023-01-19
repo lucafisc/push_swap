@@ -3,69 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/18 16:21:37 by lde-ross         ###   ########.fr       */
+/*   Created: 2023/01/19 16:46:22 by lde-ross          #+#    #+#             */
+/*   Updated: 2023/01/19 16:47:10 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stack	*new_stack(int value, int index)
-{
-	t_stack *stack;
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	stack->value = value;
-	stack->index = index;
-	stack->next = NULL;
-	return (stack);
-}
-
-void	stack_update_index(t_stack **stack)
-{
-	t_stack			*temp;
-	int	i;
-
-	i = 0;
-	temp = *stack;
-	while (temp)
-	{
-		temp->index = i;
-		temp = temp->next;
-		i++;
-	}
-}
-
-t_stack	*stack_get_second_last(t_stack *stack)
-{
-	t_stack *scnd_last;
-
-	scnd_last = stack;
-	while (scnd_last && scnd_last->next->next)
-		scnd_last = scnd_last->next;
-	return (scnd_last);
-}
-
-t_stack	*stack_get_last(t_stack *stack)
-{
-	t_stack *last;
-
-	last = stack;
-	while (last && last->next)
-		last = last->next;
-	return (last);
-}
-
-void	stack_add_back(t_stack *stack, t_stack *new_node)
-{
-	t_stack *last;
-
-	last = stack_get_last(stack);
-	last->next = new_node;
-}
 
 int	get_stack_length(t_stack *stack)
 {
@@ -84,37 +29,53 @@ int	get_stack_middle(t_stack *stack)
 	return (get_stack_length(stack) / 2);
 }
 
-void	clear_stack(t_stack **stack)
+int get_min_value(t_stack *stack)
 {
-	t_stack	*tmp;
+	int value;
 
-	if (stack == NULL)
-		return ;
-	while (*stack)
+	value = stack->value;
+	while (stack)
 	{
-		tmp = (*stack)->next;
-		free(*stack);
-		*stack = tmp;
+		if (value > stack->value)
+			value = stack->value;
+		stack = stack->next;
 	}
-	*stack = NULL;
+	return (value);
 }
 
-
-t_stack *init_stack(int n, char *argv[])
+int get_max_value(t_stack *stack)
 {
-	t_stack	*stack;
-	int		i;
-	int		number;
+	int value;
 
-	i = 1;
-	while (i <= n)
+	value = stack->value;
+	while (stack)
 	{
-		number = ft_atoi(argv[i]);
-		if (i == 1)
-			stack = new_stack(number, i - 1);
-		else
-			stack_add_back(stack, new_stack(number, i - 1));
-		i++;
+		if (value < stack->value)
+			value = stack->value;
+		stack = stack->next;
 	}
-	return (stack);
+	return (value);
+}
+
+int	get_range(t_stack *stack)
+{
+	int	lowest;
+	int	highest;
+	int	range;
+
+	lowest = get_min_value(stack);
+	highest = get_max_value(stack);
+	range = highest - lowest;
+	return (range);
+}
+
+bool is_sorted(t_stack *stack)
+{
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
 }

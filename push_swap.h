@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/18 16:21:11 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:48:38 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ int		get_stack_length(t_stack *stack);
 int		get_stack_middle(t_stack *stack);
 void	stack_update_index(t_stack **stack);
 void	clear_stack(t_stack **stack);
+int get_min_value(t_stack *stack);
+int get_max_value(t_stack *stack);
+bool is_sorted(t_stack *stack);
+
+
 
 //print command
 void print_cmd(char *str);
@@ -60,6 +65,8 @@ void	push(t_stack **src, t_stack **dest, char x);
 void	swap(t_stack **stack, char x);
 void	rotate(t_stack **stack, char x);
 void	reverse_rotate(t_stack **stack, char x);
+
+void	sort_three(t_stack **stack);
 
 
 #endif

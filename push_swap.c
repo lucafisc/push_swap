@@ -6,145 +6,13 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 16:22:26 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:47:38 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 int count = 0;
-
-int get_max_index(t_stack *stack)
-{
-	int value;
-	int index;
-
-	value = stack->value;
-	index = stack->index;
-	while (stack)
-	{
-		if (value < stack->value)
-		{
-			value = stack->value;
-			index = stack->index;
-		}
-		stack = stack->next;
-	}
-	return (index);
-}
-
-int get_min_index(t_stack *stack)
-{
-	int value;
-	int index;
-
-	value = stack->value;
-	index = stack->index;
-	while (stack)
-	{
-		if (value > stack->value)
-		{
-			value = stack->value;
-			index = stack->index;
-		}
-		stack = stack->next;
-	}
-	return (index);
-}
-
-int get_min_value(t_stack *stack)
-{
-	int value;
-
-	value = stack->value;
-	while (stack)
-	{
-		if (value > stack->value)
-			value = stack->value;
-		stack = stack->next;
-	}
-	return (value);
-}
-
-int get_max_value(t_stack *stack)
-{
-	int value;
-
-	value = stack->value;
-	while (stack)
-	{
-		if (value < stack->value)
-			value = stack->value;
-		stack = stack->next;
-	}
-	return (value);
-}
-
-int	get_range(t_stack *stack)
-{
-	int	lowest;
-	int	highest;
-	int	range;
-
-	lowest = get_min_value(stack);
-	highest = get_max_index(stack);
-	range = highest - lowest;
-	return (range);
-}
-
-void sort_three(t_stack **stack)
-{
-	int	max_index;
-	int	min_index;
-
-	max_index = get_max_index(*stack);
-	min_index = get_min_index(*stack);
-	if (max_index == 2 && min_index == 1)
-		swap(stack, 'a');
-	else if (max_index == 0 && min_index == 1)
-		rotate(stack, 'a');
-	else if (max_index == 1 && min_index == 2)
-		reverse_rotate(stack, 'a');
-	else if (max_index == 1 && min_index == 0)
-	{
-		swap(stack, 'a');
-		rotate(stack, 'a');
-	}
-	else if (max_index == 0 && min_index == 2)
-	{
-		swap(stack, 'a');
-		reverse_rotate(stack, 'a');
-	}
-}
-
-bool is_sorted(t_stack *stack)
-{
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
-}
-
-void	sort_five(t_stack **a)
-{
-	t_stack	*b;
-	b = NULL;
-	push(a, &b, 'b');
-	push(a, &b, 'b');
-	sort_three(a);
-	ft_printf("value of first a: %d\n", (*a)->value);
-	while (b->value > (*a)->value)
-		rotate(a, 'a');
-	push(&b, a, 'a');
-	while (b->value > (*a)->value)
-		rotate(a, 'a');
-	push(&b, a, 'a');
-	
-	clear_stack(&b);
-}
 
 sort_params	find_info_first_match(t_stack *stack, int key)
 {
@@ -323,10 +191,6 @@ void	push_swap(int length, char *argv[])
 	{
 		ft_printf("sort_small\n");
 		sort_three(&a);
-	}
-	else if (length <= 5)
-	{
-		sort_five(&a);
 	}
 	else
 	{
