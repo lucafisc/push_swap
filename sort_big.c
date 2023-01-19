@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:51:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 16:51:28 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:03:05 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ sort_params	find_info_first_match(t_stack *stack, int key)
 	first.found = false;
 
 	first.index = 0;
-	ft_printf("this is the stack middle %d\n",get_stack_middle(stack));
 	while ((int)stack->index <= get_stack_middle(stack))
 	{
 		if (stack->value <= key)
@@ -66,21 +65,14 @@ sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 	first = find_info_first_match(stack, ceiling);
 	last = find_info_last_match(stack, ceiling);
 	middle = get_stack_middle(stack);
-	//ft_printf("middle(%d) - first.index(%d) = (%d) > last.index(%d) - middle(%d) = (%d) ?\n",middle, first.index, middle - first.index, last.index, middle, last.index - middle);
 	if (first.found)
 		ft_printf("first found!\n");
 	if (last.found)
 		ft_printf("last found!\n");
 	if (middle - first.index > last.index - middle && first.found)
-	{
-		//ft_printf("returning first: value: %d index: %u\n", first.value, first.index);
 		return (first);
-	}
 	else
-	{
-		//ft_printf("returning last: value: %d index: %u\n", last.value, last.index);
 		return (last);
-	}
 }
 
 void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
@@ -93,38 +85,11 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 	while ((*a)->value != instructions.value)
 	{
 		if (instructions.rotate)
-		{
-			// optimisation?? protect if be was not initialized
-
-			// if (b && *b && (*b)->next && (*a)->next->value == instructions.value && (*b)->value < (*b)->next->value)
-			// {
-			// 	swap(a, 'a');
-			// 	swap(b, 'b');
-			// }
-			// else
 			rotate(a, 'a');
-			// if ((*b)->next && (*b)->next->next && (*b)->value > instructions.value)
-			// 	rotate(b, 'b');
-				// if ((*b)->value < instructions.value)
-				// {
-				// 	ft_printf("\n\n\nwill rotate and send %d to the last index to put %d on top\n\n\n", (*b)->value, instructions.value);
-				// 	rotate(b, 'b');
-				// }
-			
-		}
 		else
 			reverse_rotate(a, 'a');
 	}
 	ft_printf("%d is now on top of stack A\n", (*a)->value);
-	// if ((*b)->next && (*b)->next->next)
-	// {
-	// 	while ((*b)->value > instructions.value)
-	// 	{
-	// 		rotate(b, 'b');
-	// 	}
-		
-		
-	// }
 	push(a, b, 'b');
 	if ((*b)->next && !(*b)->next->next && (*b)->value < (*b)->next->value)
 		swap(b, 'b');
@@ -134,14 +99,11 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 void	sort_big(t_stack **a, int length)
 {
 	t_stack	*b;
-	t_stack *temp;
-	// int		range;
 	int		ceiling;
 	int		ratio;
 	sort_params	instructions;
 	
-	// range = get_range(*a);
-	ratio = (length / 6); //ratio defines the amount of chunks
+	ratio = (length / 6);
 	b = NULL;
 	ceiling = get_min_value(*a) + ratio;
 	instructions = find_cheapest_move(*a, ceiling);
@@ -162,18 +124,7 @@ void	sort_big(t_stack **a, int length)
 		instructions = find_cheapest_move(*a, ceiling);
 	}
 	sort_three(a);
-
-
-	// ft_printf("ceiling: %d\n", ceiling);
-	// ft_printf("index: %u, value: %d\n", instructions.index, instructions.value);
-	// ft_printf("value of b index 0: %d\n", b->value);
-	// ft_printf("value of a index 0: %d\n", (*a)->value);
-	temp = b;
-	while (temp)
-	{
-		ft_printf("index: %d, value: %d\n", temp->index, temp->value);
-		temp = temp->next;
-	}
-		clear_stack(&b);
-
+	print_stack_info(b);
+	print_stack_info(*a);
+	clear_stack(&b);
 }

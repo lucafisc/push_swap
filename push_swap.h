@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 16:51:39 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:55:39 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ void	reverse_rotate(t_stack **stack, char x);
 
 void	sort_three(t_stack **stack);
 void	sort_big(t_stack **a, int length);
+
+//helpers
+void	print_stack_info(t_stack *stack);
+
 
 
 #endif
