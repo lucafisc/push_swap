@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 11:52:00 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:22:26 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ sort_params	find_info_first_match(t_stack *stack, int key)
 	first.found = false;
 
 	first.index = 0;
+	ft_printf("this is the stack middle %d\n",get_stack_middle(stack));
 	while ((int)stack->index <= get_stack_middle(stack))
 	{
 		if (stack->value <= key)
@@ -219,30 +220,55 @@ sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 {
 	//check cheapest way to rotate b to get the new number before pushing
+	// t_stack	*last;
+
+	// last = stack_get_last(*b);
 	
 	while ((*a)->value != instructions.value)
 	{
 		if (instructions.rotate)
 		{
 			// optimisation?? protect if be was not initialized
-			if (b && *b && (*b)->next && (*a)->next->value == instructions.value && (*b)->value < (*b)->next->value)
-			{
-				swap(a, 'a');
-				swap(b, 'b');
-			}
-			else
-				rotate(a, 'a');
+
+			// if (b && *b && (*b)->next && (*a)->next->value == instructions.value && (*b)->value < (*b)->next->value)
+			// {
+			// 	swap(a, 'a');
+			// 	swap(b, 'b');
+			// }
+			// else
+			rotate(a, 'a');
+			// if ((*b)->next && (*b)->next->next && (*b)->value > instructions.value)
+			// 	rotate(b, 'b');
+				// if ((*b)->value < instructions.value)
+				// {
+				// 	ft_printf("\n\n\nwill rotate and send %d to the last index to put %d on top\n\n\n", (*b)->value, instructions.value);
+				// 	rotate(b, 'b');
+				// }
+			
 		}
 		else
 			reverse_rotate(a, 'a');
 	}
+	ft_printf("%d is now on top of stack A\n", (*a)->value);
+	// if ((*b)->next && (*b)->next->next)
+	// {
+	// 	while ((*b)->value > instructions.value)
+	// 	{
+	// 		rotate(b, 'b');
+	// 	}
+		
+		
+	// }
 	push(a, b, 'b');
+	if ((*b)->next && !(*b)->next->next && (*b)->value < (*b)->next->value)
+		swap(b, 'b');
 }
 
 
 void	sort_big(t_stack **a, int length)
 {
 	t_stack	*b;
+	t_stack *temp;
 	// int		range;
 	int		ceiling;
 	int		ratio;
@@ -256,12 +282,12 @@ void	sort_big(t_stack **a, int length)
 	ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
 	while (get_stack_length(*a) > 3)
 	{
-		while (instructions.found)
+		while (instructions.found && get_stack_length(*a) > 3)
 		{
 			ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
 			move_to_b(a, &b, instructions);
-			ft_printf("%d pushed to b!\n\n\n", instructions.value);
-			ft_printf("_____________________\n", instructions.value);
+			ft_printf("%d pushed to b!\n", instructions.value);
+			ft_printf("\n___________________________________\n\n\n", instructions.value);
 			instructions = find_cheapest_move(*a, ceiling);
 		}
 		ceiling += ratio;
@@ -276,6 +302,12 @@ void	sort_big(t_stack **a, int length)
 	// ft_printf("index: %u, value: %d\n", instructions.index, instructions.value);
 	// ft_printf("value of b index 0: %d\n", b->value);
 	// ft_printf("value of a index 0: %d\n", (*a)->value);
+	temp = b;
+	while (temp)
+	{
+		ft_printf("index: %d, value: %d\n", temp->index, temp->value);
+		temp = temp->next;
+	}
 		clear_stack(&b);
 
 }

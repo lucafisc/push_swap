@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 11:44:47 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 13:17:47 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,10 @@ void print_cmd(char *str)
 	else if (!cmd)
 	{
 		cmd = ft_strdup(str);
-		ft_printf("\n\nallocating space for %s\n\n", cmd);
 	}
 	else if (are_pairs(cmd, str))
 	{
-		ft_printf("\nare pairs!!!\n");
 		print_pairs(cmd, str);
-		ft_printf("\nfreeing memory from %s!!!\n", cmd);
 		// is throwing an error as double free
 		free(cmd);
 		cmd = NULL;
@@ -79,6 +76,5 @@ void print_cmd(char *str)
 		ft_printf("%s\n", cmd);
 		free(cmd);
 		cmd = ft_strdup(str);
-		ft_printf("\n\nallocating space for %s\n\n", cmd);
 	}
 }
