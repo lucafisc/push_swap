@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:51:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 17:03:05 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:17:47 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 sort_params	find_info_first_match(t_stack *stack, int key)
 {
-	sort_params first;
+	sort_params	first;
+
 	first.rotate = true;
 	first.found = false;
-
 	first.index = 0;
 	while ((int)stack->index <= get_stack_middle(stack))
 	{
@@ -36,13 +36,12 @@ sort_params	find_info_first_match(t_stack *stack, int key)
 sort_params	find_info_last_match(t_stack *stack, int key)
 {
 	sort_params	last;
+
 	last.rotate = false;
 	last.found = false;
-
 	last.index = 0;
 	while ((int)stack->index < get_stack_middle(stack))
 		stack = stack->next;
-
 	while (stack)
 	{
 		if (stack->value <= key)
@@ -58,9 +57,9 @@ sort_params	find_info_last_match(t_stack *stack, int key)
 
 sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 {
-	int	middle;
-	sort_params first;
-	sort_params last;
+	int			middle;
+	sort_params	first;
+	sort_params	last;
 
 	first = find_info_first_match(stack, ceiling);
 	last = find_info_last_match(stack, ceiling);
@@ -79,9 +78,7 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 {
 	//check cheapest way to rotate b to get the new number before pushing
 	// t_stack	*last;
-
 	// last = stack_get_last(*b);
-	
 	while ((*a)->value != instructions.value)
 	{
 		if (instructions.rotate)
@@ -95,14 +92,13 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 		swap(b, 'b');
 }
 
-
 void	sort_big(t_stack **a, int length)
 {
-	t_stack	*b;
-	int		ceiling;
-	int		ratio;
+	t_stack		*b;
+	int			ceiling;
+	int			ratio;
 	sort_params	instructions;
-	
+
 	ratio = (length / 6);
 	b = NULL;
 	ceiling = get_min_value(*a) + ratio;

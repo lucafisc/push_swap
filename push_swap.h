@@ -6,14 +6,14 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 16:55:39 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:12:16 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-#include "./libft/libft.h"
-#include "./ft_printf/ft_printf.h"
+# include "./libft/libft.h"
+# include "./ft_printf/ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -51,27 +51,24 @@ int		get_stack_length(t_stack *stack);
 int		get_stack_middle(t_stack *stack);
 void	stack_update_index(t_stack **stack);
 void	clear_stack(t_stack **stack);
-int get_min_value(t_stack *stack);
-int get_max_value(t_stack *stack);
-bool is_sorted(t_stack *stack);
+int		get_min_value(t_stack *stack);
+int		get_max_value(t_stack *stack);
+bool	is_sorted(t_stack *stack);
 
 
 
 //print command
-void print_cmd(char *str);
+void	print_cmd(char *str);
 
 //commands
 void	push(t_stack **src, t_stack **dest, char x);
 void	swap(t_stack **stack, char x);
 void	rotate(t_stack **stack, char x);
 void	reverse_rotate(t_stack **stack, char x);
-
 void	sort_three(t_stack **stack);
 void	sort_big(t_stack **a, int length);
 
 //helpers
 void	print_stack_info(t_stack *stack);
-
-
 
 #endif

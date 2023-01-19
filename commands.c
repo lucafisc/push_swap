@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:28:46 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/18 14:22:32 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:12:46 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	rotate(t_stack **stack, char x)
 void	reverse_rotate(t_stack **stack, char x)
 {	
 	t_stack	*last;
-	t_stack *scnd_last;
+	t_stack	*scnd_last;
 	t_stack	*temp;
 
 	last = stack_get_last(*stack);

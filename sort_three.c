@@ -6,16 +6,16 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:43:00 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 16:44:24 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:13:36 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int get_max_index(t_stack *stack)
+int	get_max_index(t_stack *stack)
 {
-	int value;
-	int index;
+	int	value;
+	int	index;
 
 	value = stack->value;
 	index = stack->index;
@@ -31,10 +31,10 @@ int get_max_index(t_stack *stack)
 	return (index);
 }
 
-int get_min_index(t_stack *stack)
+int	get_min_index(t_stack *stack)
 {
-	int value;
-	int index;
+	int	value;
+	int	index;
 
 	value = stack->value;
 	index = stack->index;
@@ -50,8 +50,7 @@ int get_min_index(t_stack *stack)
 	return (index);
 }
 
-
-void sort_three(t_stack **stack)
+void	sort_three(t_stack **stack)
 {
 	int	max_index;
 	int	min_index;

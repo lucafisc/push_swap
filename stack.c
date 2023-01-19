@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 16:46:19 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:08:35 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 t_stack	*new_stack(int value, int index)
 {
-	t_stack *stack;
+	t_stack	*stack;
+
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
@@ -26,8 +27,8 @@ t_stack	*new_stack(int value, int index)
 
 void	stack_update_index(t_stack **stack)
 {
-	t_stack			*temp;
-	int	i;
+	t_stack	*temp;
+	int		i;
 
 	i = 0;
 	temp = *stack;
@@ -41,7 +42,7 @@ void	stack_update_index(t_stack **stack)
 
 t_stack	*stack_get_second_last(t_stack *stack)
 {
-	t_stack *scnd_last;
+	t_stack	*scnd_last;
 
 	scnd_last = stack;
 	while (scnd_last && scnd_last->next->next)
@@ -51,7 +52,7 @@ t_stack	*stack_get_second_last(t_stack *stack)
 
 t_stack	*stack_get_last(t_stack *stack)
 {
-	t_stack *last;
+	t_stack	*last;
 
 	last = stack;
 	while (last && last->next)
@@ -61,7 +62,7 @@ t_stack	*stack_get_last(t_stack *stack)
 
 void	stack_add_back(t_stack *stack, t_stack *new_node)
 {
-	t_stack *last;
+	t_stack	last;
 
 	last = stack_get_last(stack);
 	last->next = new_node;
@@ -82,8 +83,7 @@ void	clear_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-
-t_stack *init_stack(int n, char *argv[])
+t_stack	*init_stack(int n, char *argv[])
 {
 	t_stack	*stack;
 	int		i;

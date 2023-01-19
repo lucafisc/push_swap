@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:46:22 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 16:47:10 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:16:39 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	get_stack_length(t_stack *stack)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (stack)
 	{
@@ -29,9 +30,9 @@ int	get_stack_middle(t_stack *stack)
 	return (get_stack_length(stack) / 2);
 }
 
-int get_min_value(t_stack *stack)
+int	get_min_value(t_stack *stack)
 {
-	int value;
+	int	value;
 
 	value = stack->value;
 	while (stack)
@@ -43,9 +44,9 @@ int get_min_value(t_stack *stack)
 	return (value);
 }
 
-int get_max_value(t_stack *stack)
+int	get_max_value(t_stack *stack)
 {
-	int value;
+	int	value;
 
 	value = stack->value;
 	while (stack)
@@ -69,7 +70,7 @@ int	get_range(t_stack *stack)
 	return (range);
 }
 
-bool is_sorted(t_stack *stack)
+bool	is_sorted(t_stack *stack)
 {
 	while (stack->next)
 	{

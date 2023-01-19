@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:40 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/16 15:29:45 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:17:33 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	is_valid_number(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-				return (false);
+			return (false);
 		i++;
 	}
 	return (true);
