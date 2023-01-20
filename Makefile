@@ -2,7 +2,7 @@ FILES = main.c push_swap.c check_input.c throw_error.c stack_utils.c commands.c 
 OBJECTS = $(addprefix obj/, $(FILES:.c=.o))
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -ggdb3
-NAME = push_swap.a
+NAME = push_swap
 PRINTF = ft_printf/ft_printf.a
 LIBFT = libft/libft.a
 INCLUDES = -I ft_printf/includes -I libft/includes

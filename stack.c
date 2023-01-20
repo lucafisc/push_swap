@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 17:08:35 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:19:07 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_stack	*stack_get_last(t_stack *stack)
 
 void	stack_add_back(t_stack *stack, t_stack *new_node)
 {
-	t_stack	last;
+	t_stack	*last;
 
 	last = stack_get_last(stack);
 	last->next = new_node;

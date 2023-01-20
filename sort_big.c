@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:51:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 17:17:47 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:53:01 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 	first = find_info_first_match(stack, ceiling);
 	last = find_info_last_match(stack, ceiling);
 	middle = get_stack_middle(stack);
-	if (first.found)
-		ft_printf("first found!\n");
-	if (last.found)
-		ft_printf("last found!\n");
+	// if (first.found)
+	// 	//ft_printf("first found!\n");
+	// if (last.found)
+	// 	//ft_printf("last found!\n");
 	if (middle - first.index > last.index - middle && first.found)
 		return (first);
 	else
@@ -86,10 +86,66 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 		else
 			reverse_rotate(a, 'a');
 	}
-	ft_printf("%d is now on top of stack A\n", (*a)->value);
+//	ft_printf("%d is now on top of stack A\n", (*a)->value);
+	
 	push(a, b, 'b');
-	if ((*b)->next && !(*b)->next->next && (*b)->value < (*b)->next->value)
-		swap(b, 'b');
+	// if ((*b)->next && (*b)->value < (*b)->next->value)
+	// {
+	// 	swap(b, 'b');
+	// }
+
+}
+
+sort_params	find_match(t_stack *stack, int match)
+{
+	sort_params	node;
+
+	node.rotate = true;
+	node.found = false;
+	node.index = 0;
+
+	while (stack)
+	{
+		if (stack->value == match)
+		{
+			node.found = true;
+			node.index = stack->index;
+			node.value = stack->value;
+			if (node.index >= get_stack_middle(stack))
+				node.rotate = false;
+			return (node);
+		}
+		stack = stack->next;
+	}
+	return (node);
+}
+
+
+void	move_back(t_stack **a, t_stack **b)
+{
+	int	match;
+	sort_params	instructions;
+
+	match = get_max_value(*b);
+	while (get_stack_length(*b) > 1)
+	{
+		instructions = find_match(*b, match);
+		while ((*b)->value != instructions.value && instructions.found)
+		{
+			if (instructions.rotate)
+				rotate(b, 'b');
+			else
+				reverse_rotate(b, 'b');
+			//ft_printf("MATCH!: index: %d value: %d searched for: %d\n", instructions.index, instructions.value, match);
+		}
+		if (instructions.found)
+			push(b, a, 'a');
+			
+		match--;
+		
+	}
+	printf("pa\n");
+	//push(b, a, 'a');
 }
 
 void	sort_big(t_stack **a, int length)
@@ -97,21 +153,27 @@ void	sort_big(t_stack **a, int length)
 	t_stack		*b;
 	int			ceiling;
 	int			ratio;
+	int	max;
+	int	min;
+	int middle;
 	sort_params	instructions;
 
-	ratio = (length / 6);
+	min = get_min_value(*a);
+	max = get_max_value(*a);
+	middle = (min + max) / 2;
+	ratio = (length / (middle / 6));
 	b = NULL;
 	ceiling = get_min_value(*a) + ratio;
 	instructions = find_cheapest_move(*a, ceiling);
-	ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
+	//ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
 	while (get_stack_length(*a) > 3)
 	{
 		while (instructions.found && get_stack_length(*a) > 3)
 		{
-			ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
+			//ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
 			move_to_b(a, &b, instructions);
-			ft_printf("%d pushed to b!\n", instructions.value);
-			ft_printf("\n___________________________________\n\n\n", instructions.value);
+			//ft_printf("%d pushed to b!\n", instructions.value);
+			//ft_printf("\n___________________________________\n\n\n", instructions.value);
 			instructions = find_cheapest_move(*a, ceiling);
 		}
 		ceiling += ratio;
@@ -120,6 +182,9 @@ void	sort_big(t_stack **a, int length)
 		instructions = find_cheapest_move(*a, ceiling);
 	}
 	sort_three(a);
+	print_stack_info(b);
+	print_stack_info(*a);
+	move_back(a, &b);
 	print_stack_info(b);
 	print_stack_info(*a);
 	clear_stack(&b);
