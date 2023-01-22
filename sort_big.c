@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:51:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/20 18:53:01 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/22 15:58:14 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,55 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 	//check cheapest way to rotate b to get the new number before pushing
 	// t_stack	*last;
 	// last = stack_get_last(*b);
+	sort_params max_in_b;
+
+	if (*b)
+	{
+		max_in_b = get_max_info(*b);
+	}
+		
 	while ((*a)->value != instructions.value)
 	{
 		if (instructions.rotate)
+		{
 			rotate(a, 'a');
+			if (instructions.value > max_in_b.value && (*b)->value != max_in_b.value && max_in_b.rotate)
+				rotate(b, 'b');
+		}
 		else
+		{	
 			reverse_rotate(a, 'a');
+			if (instructions.value > max_in_b.value && (*b)->value != max_in_b.value && !max_in_b.rotate)
+				reverse_rotate(b, 'b');
+		}
 	}
+
+	if (instructions.value > max_in_b.value)
+	{
+		while ((*b)->value != max_in_b.value)
+		{
+			if (max_in_b.index < get_stack_middle(*b))
+				rotate(b, 'b');
+			else
+				reverse_rotate(b, 'b');
+		}
+	}
+		
+
+	
 //	ft_printf("%d is now on top of stack A\n", (*a)->value);
 	
 	push(a, b, 'b');
+
+	// if ((*b)->next)
+	// {
+	// 	if ((*b)->value < (*b)->next->value && (*a)->value > (*a)->next->value)
+	// {
+	// 	swap(a, 'a');
+	// 	swap(b, 'b');
+	// }
+		
+	// }
 	// if ((*b)->next && (*b)->value < (*b)->next->value)
 	// {
 	// 	swap(b, 'b');
@@ -161,7 +200,7 @@ void	sort_big(t_stack **a, int length)
 	min = get_min_value(*a);
 	max = get_max_value(*a);
 	middle = (min + max) / 2;
-	ratio = (length / (middle / 6));
+	ratio = (length / (middle / 8));
 	b = NULL;
 	ceiling = get_min_value(*a) + ratio;
 	instructions = find_cheapest_move(*a, ceiling);

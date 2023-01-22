@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 17:12:16 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/22 14:49:48 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int		get_min_value(t_stack *stack);
 int		get_max_value(t_stack *stack);
 bool	is_sorted(t_stack *stack);
 
-
-
 //print command
 void	print_cmd(char *str);
 
@@ -70,5 +68,7 @@ void	sort_big(t_stack **a, int length);
 
 //helpers
 void	print_stack_info(t_stack *stack);
+
+sort_params	get_max_info(t_stack *stack);
 
 #endif

@@ -10,34 +10,31 @@ MAGENTA="\033[1;35m"
 CYAN="\033[1;36m"
 WHITE="\033[1;37m"
 
-function ProgressBar {
-# Process data
+function ProgressBar
+{
     let _progress=(${1}*100/${2}*100)/100
     let _done=(${_progress}*4)/10
     let _left=40-$_done
-# Build progressbar string lengths
     _fill=$(printf "%${_done}s")
     _empty=$(printf "%${_left}s")
-
-# 1.2 Build progressbar strings and print the ProgressBar line
-# 1.2.1 Output example:                           
-# 1.2.1.1 Progress : [########################################] 100%
-printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"
-
+	printf "\rProgress : [${_fill// /#}${_empty// /-}] ${_progress}%%"
 }
 
 exec_set ()
 {
 	for i in $(eval echo "{1..$1}")
 	do
-		ARG=$(< 10k.txt shuf | head -n $2); 
+		$(< 10k.txt shuf | head -n $2 > test_case.txt)
+		ARG=$(< test_case.txt)
 		if ../push_swap $ARG | ./checker_linux $ARG | grep OK > /dev/null; then
 			ProgressBar $i $1
 		else
-			printf "KO\n"
+			printf "Status : ${RED}KO${DEF_COLOR} with list:\n"
+			cat test_case.txt
 			return 0
 		fi
 	done
+		printf "\nStatus : ${GREEN}OK${DEF_COLOR}\n"
 }
 
 exec_all ()
