@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:51:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/22 15:58:14 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:07:27 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ sort_params	find_info_first_match(t_stack *stack, int key)
 	first.index = 0;
 	while ((int)stack->index <= get_stack_middle(stack))
 	{
-		if (stack->value <= key)
+		if (stack->value < key)
 		{
 			first.found = true;
 			first.index = stack->index;
@@ -44,7 +44,7 @@ sort_params	find_info_last_match(t_stack *stack, int key)
 		stack = stack->next;
 	while (stack)
 	{
-		if (stack->value <= key)
+		if (stack->value < key)
 		{
 			last.index = stack->index;
 			last.value = stack->value;
@@ -76,63 +76,43 @@ sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 
 void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 {
-	//check cheapest way to rotate b to get the new number before pushing
-	// t_stack	*last;
-	// last = stack_get_last(*b);
-	sort_params max_in_b;
+	// sort_params	max_in_b;
 
-	if (*b)
-	{
-		max_in_b = get_max_info(*b);
-	}
-		
+	// max_in_b = get_max_info(*b);
+	
+	// ft_printf("\nmax in b: %d\n", max_in_b.value);
 	while ((*a)->value != instructions.value)
 	{
-		if (instructions.rotate)
+		if ((*a)->next->value == instructions.value)
+		{
+			swap(a, 'a');
+			if ((*b) && (*b)->next && (*b)->value < (*b)->next->value)
+				swap(b, 'b');
+		}
+		else if (instructions.rotate)
 		{
 			rotate(a, 'a');
-			if (instructions.value > max_in_b.value && (*b)->value != max_in_b.value && max_in_b.rotate)
-				rotate(b, 'b');
+			// if (max_in_b.found && (*b) && instructions.value > max_in_b.value && max_in_b.rotate && (*b)->value != max_in_b.value)
+			// 	rotate(b, 'b');
 		}
 		else
-		{	
-			reverse_rotate(a, 'a');
-			if (instructions.value > max_in_b.value && (*b)->value != max_in_b.value && !max_in_b.rotate)
-				reverse_rotate(b, 'b');
-		}
-	}
-
-	if (instructions.value > max_in_b.value)
-	{
-		while ((*b)->value != max_in_b.value)
 		{
-			if (max_in_b.index < get_stack_middle(*b))
-				rotate(b, 'b');
-			else
-				reverse_rotate(b, 'b');
+			reverse_rotate(a, 'a');
+			// if (max_in_b.found && (*b) && instructions.value > max_in_b.value && !max_in_b.rotate && (*b)->value != max_in_b.value)
+			// 	reverse_rotate(b, 'b');			
 		}
 	}
-		
-
-	
-//	ft_printf("%d is now on top of stack A\n", (*a)->value);
-	
+	// if (max_in_b.found && (*b) && instructions.value > max_in_b.value)
+	// {
+	// 	while ((*b)->value != max_in_b.value)
+	// 	{
+	// 		if (max_in_b.rotate)
+	// 			rotate(b, 'b');
+	// 		else
+	// 			reverse_rotate(b, 'b');
+	// 	}
+	// }
 	push(a, b, 'b');
-
-	// if ((*b)->next)
-	// {
-	// 	if ((*b)->value < (*b)->next->value && (*a)->value > (*a)->next->value)
-	// {
-	// 	swap(a, 'a');
-	// 	swap(b, 'b');
-	// }
-		
-	// }
-	// if ((*b)->next && (*b)->value < (*b)->next->value)
-	// {
-	// 	swap(b, 'b');
-	// }
-
 }
 
 sort_params	find_match(t_stack *stack, int match)
@@ -183,8 +163,7 @@ void	move_back(t_stack **a, t_stack **b)
 		match--;
 		
 	}
-	printf("pa\n");
-	//push(b, a, 'a');
+	push(b, a, 'a');
 }
 
 void	sort_big(t_stack **a, int length)
@@ -192,22 +171,19 @@ void	sort_big(t_stack **a, int length)
 	t_stack		*b;
 	int			ceiling;
 	int			ratio;
-	int	max;
-	int	min;
-	int middle;
 	sort_params	instructions;
 
-	min = get_min_value(*a);
-	max = get_max_value(*a);
-	middle = (min + max) / 2;
-	ratio = (length / (middle / 8));
+	ratio = (length / 4);
+	if (length < 10)
+		ratio = 1;
 	b = NULL;
 	ceiling = get_min_value(*a) + ratio;
+
 	instructions = find_cheapest_move(*a, ceiling);
 	//ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
-	while (get_stack_length(*a) > 3)
+	while (get_stack_length(*a) > (ratio + 3))
 	{
-		while (instructions.found && get_stack_length(*a) > 3)
+		while (instructions.found && get_stack_length(*a) > (ratio + 3))
 		{
 			//ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
 			move_to_b(a, &b, instructions);
@@ -220,6 +196,13 @@ void	sort_big(t_stack **a, int length)
 			ceiling = get_max_value(*a);
 		instructions = find_cheapest_move(*a, ceiling);
 	}
+	while (get_stack_length(*a) > 3)
+	{
+		instructions = get_min_info(*a);
+		move_to_b(a, &b, instructions);
+	}
+	
+
 	sort_three(a);
 	print_stack_info(b);
 	print_stack_info(*a);
