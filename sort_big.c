@@ -6,15 +6,15 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:51:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/23 19:07:27 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:10:38 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-sort_params	find_info_first_match(t_stack *stack, int key)
+sort_params find_info_first_match(t_stack *stack, int key)
 {
-	sort_params	first;
+	sort_params first;
 
 	first.rotate = true;
 	first.found = false;
@@ -33,9 +33,9 @@ sort_params	find_info_first_match(t_stack *stack, int key)
 	return (first);
 }
 
-sort_params	find_info_last_match(t_stack *stack, int key)
+sort_params find_info_last_match(t_stack *stack, int key)
 {
-	sort_params	last;
+	sort_params last;
 
 	last.rotate = false;
 	last.found = false;
@@ -55,11 +55,11 @@ sort_params	find_info_last_match(t_stack *stack, int key)
 	return (last);
 }
 
-sort_params	find_cheapest_move(t_stack *stack, int ceiling)
+sort_params find_cheapest_move(t_stack *stack, int ceiling)
 {
-	int			middle;
-	sort_params	first;
-	sort_params	last;
+	int middle;
+	sort_params first;
+	sort_params last;
 
 	first = find_info_first_match(stack, ceiling);
 	last = find_info_last_match(stack, ceiling);
@@ -74,12 +74,12 @@ sort_params	find_cheapest_move(t_stack *stack, int ceiling)
 		return (last);
 }
 
-void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
+void move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 {
 	// sort_params	max_in_b;
 
 	// max_in_b = get_max_info(*b);
-	
+
 	// ft_printf("\nmax in b: %d\n", max_in_b.value);
 	while ((*a)->value != instructions.value)
 	{
@@ -99,7 +99,7 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 		{
 			reverse_rotate(a, 'a');
 			// if (max_in_b.found && (*b) && instructions.value > max_in_b.value && !max_in_b.rotate && (*b)->value != max_in_b.value)
-			// 	reverse_rotate(b, 'b');			
+			// 	reverse_rotate(b, 'b');
 		}
 	}
 	// if (max_in_b.found && (*b) && instructions.value > max_in_b.value)
@@ -115,9 +115,9 @@ void	move_to_b(t_stack **a, t_stack **b, sort_params instructions)
 	push(a, b, 'b');
 }
 
-sort_params	find_match(t_stack *stack, int match)
+sort_params find_match(t_stack *stack, int match)
 {
-	sort_params	node;
+	sort_params node;
 
 	node.rotate = true;
 	node.found = false;
@@ -139,39 +139,53 @@ sort_params	find_match(t_stack *stack, int match)
 	return (node);
 }
 
-
-void	move_back(t_stack **a, t_stack **b)
+void move_back(t_stack **a, t_stack **b)
 {
-	int	match;
-	sort_params	instructions;
+	int match;
+	sort_params instructions;
+	t_stack *last_of_a;
+	int down;
 
-	match = get_max_value(*b);
+	down = 0;
 	while (get_stack_length(*b) > 1)
 	{
-		instructions = find_match(*b, match);
-		while ((*b)->value != instructions.value && instructions.found)
+		last_of_a = stack_get_last(*a);
+		match = get_max_value(*b);
+		if ((*b)->value != match && (down == 0 || (*b)->value > last_of_a->value))
 		{
-			if (instructions.rotate)
-				rotate(b, 'b');
-			else
-				reverse_rotate(b, 'b');
-			//ft_printf("MATCH!: index: %d value: %d searched for: %d\n", instructions.index, instructions.value, match);
-		}
-		if (instructions.found)
 			push(b, a, 'a');
-			
-		match--;
-		
+			rotate(a, 'a');
+			down++;
+		}
+		else
+		{
+			instructions = find_match(*b, match);
+			while ((*b)->value != instructions.value && instructions.found)
+			{
+				if (instructions.rotate)
+					rotate(b, 'b');
+				else
+					reverse_rotate(b, 'b');
+			}
+			if (instructions.found)
+				push(b, a, 'a');
+			if ((*a)->value < last_of_a->value)
+			{
+				reverse_rotate(a, 'a');
+				swap(a, 'a');
+				down--;
+			}
+		}
 	}
 	push(b, a, 'a');
 }
 
-void	sort_big(t_stack **a, int length)
+void sort_big(t_stack **a, int length)
 {
-	t_stack		*b;
-	int			ceiling;
-	int			ratio;
-	sort_params	instructions;
+	t_stack *b;
+	int ceiling;
+	int ratio;
+	sort_params instructions;
 
 	ratio = (length / 4);
 	if (length < 10)
@@ -180,15 +194,15 @@ void	sort_big(t_stack **a, int length)
 	ceiling = get_min_value(*a) + ratio;
 
 	instructions = find_cheapest_move(*a, ceiling);
-	//ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
-	while (get_stack_length(*a) > (ratio + 3))
+	// ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
+	while (get_stack_length(*a) > 3)
 	{
-		while (instructions.found && get_stack_length(*a) > (ratio + 3))
+		while (instructions.found && get_stack_length(*a) > 3)
 		{
-			//ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
+			// ft_printf("value: %d index: %u ceiling: %d\n", instructions.value, instructions.index, ceiling);
 			move_to_b(a, &b, instructions);
-			//ft_printf("%d pushed to b!\n", instructions.value);
-			//ft_printf("\n___________________________________\n\n\n", instructions.value);
+			// ft_printf("%d pushed to b!\n", instructions.value);
+			// ft_printf("\n___________________________________\n\n\n", instructions.value);
 			instructions = find_cheapest_move(*a, ceiling);
 		}
 		ceiling += ratio;
@@ -196,18 +210,11 @@ void	sort_big(t_stack **a, int length)
 			ceiling = get_max_value(*a);
 		instructions = find_cheapest_move(*a, ceiling);
 	}
-	while (get_stack_length(*a) > 3)
-	{
-		instructions = get_min_info(*a);
-		move_to_b(a, &b, instructions);
-	}
-	
-
 	sort_three(a);
-	print_stack_info(b);
-	print_stack_info(*a);
+	// print_stack_info(b);
+	// print_stack_info(*a);
 	move_back(a, &b);
-	print_stack_info(b);
-	print_stack_info(*a);
+	// print_stack_info(b);
+	// print_stack_info(*a);
 	clear_stack(&b);
 }
