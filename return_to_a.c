@@ -6,15 +6,15 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:37:11 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/25 18:55:42 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:01:27 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-sort_params	find_match(t_stack *stack, int match)
+sort_params find_match(t_stack *stack, int match)
 {
-	sort_params	node;
+	sort_params node;
 
 	node.rotate = true;
 	node.found = false;
@@ -36,28 +36,43 @@ sort_params	find_match(t_stack *stack, int match)
 	return (node);
 }
 
-void	return_to_a(t_stack **a, t_stack **b)
+void return_to_a(t_stack **a, t_stack **b)
 {
-	int	match;
-	sort_params	instructions;
+	t_stack *last;
+	int match;
+	sort_params instructions;
+	int	bottom;
 
-	match = get_max_value(*b);
+	bottom = 0;
 	while (get_stack_length(*b) > 1)
 	{
+		match = get_max_value(*b);
 		instructions = find_match(*b, match);
-		while ((*b)->value != instructions.value && instructions.found)
+		last = stack_get_last(*a);
+		if (last->value < (*a)->value && last->value > match)
 		{
-			if (instructions.rotate)
-				rotate(b, 'b');
-			else
-				reverse_rotate(b, 'b');
-			//ft_printf("MATCH!: index: %d value: %d searched for: %d\n", instructions.index, instructions.value, match);
+			bottom--;
+			reverse_rotate(a, 'a');
 		}
-		if (instructions.found)
+		else if ((*b)->value == match)
 			push(b, a, 'a');
-			
-		match--;
-		
+		else if (bottom == 0 || (*b)->value > last->value)
+		{
+			bottom++;
+			push(b, a, 'a');
+			rotate(a, 'a');
+		}
+		else
+		{
+			while ((*b)->value != match)
+			{
+				if (instructions.rotate)
+					rotate(b, 'b');
+				else
+					reverse_rotate(b, 'b');
+			}
+			push(b, a, 'a');
+		}
 	}
 	push(b, a, 'a');
 }
