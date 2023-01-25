@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:37:11 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/25 19:01:27 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:05:59 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void return_to_a(t_stack **a, t_stack **b)
 	int	bottom;
 
 	bottom = 0;
-	while (get_stack_length(*b) > 1)
+	while (get_stack_length(*b) > 0)
 	{
 		match = get_max_value(*b);
 		instructions = find_match(*b, match);
@@ -74,5 +74,4 @@ void return_to_a(t_stack **a, t_stack **b)
 			push(b, a, 'a');
 		}
 	}
-	push(b, a, 'a');
 }
