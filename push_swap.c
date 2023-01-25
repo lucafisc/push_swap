@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:41:06 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/20 16:18:44 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:45:30 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	push_swap(int length, char *argv[])
 
 	a = init_stack(length, argv);
 	if (is_sorted(a))
-		ft_printf("is sorted!\n");
+		return ;
 	else if (length <= 3)
 		sort_three(&a);
 	else

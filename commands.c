@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:28:46 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/20 16:01:59 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:35:38 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	push(t_stack **src, t_stack **dest, char x)
 	if (!(*src)->value)
 		return ;
 	temp = (*src);
-//	if ((*src)->next)
 	(*src) = (*src)->next;
 	temp->next = (*dest);
 	(*dest) = temp;
