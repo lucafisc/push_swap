@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:46:22 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/26 16:31:23 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:48:48 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,4 @@ int	get_third_max_value(t_stack *stack)
 		stack = stack->next;
 	}
 	return (third);
-}
-
-bool	is_sorted(t_stack *stack)
-{
-	while (stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
 }

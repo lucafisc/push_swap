@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/20 15:19:07 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:51:11 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,6 @@ void	stack_update_index(t_stack **stack)
 		temp = temp->next;
 		i++;
 	}
-}
-
-t_stack	*stack_get_second_last(t_stack *stack)
-{
-	t_stack	*scnd_last;
-
-	scnd_last = stack;
-	while (scnd_last && scnd_last->next->next)
-		scnd_last = scnd_last->next;
-	return (scnd_last);
-}
-
-t_stack	*stack_get_last(t_stack *stack)
-{
-	t_stack	*last;
-
-	last = stack;
-	while (last && last->next)
-		last = last->next;
-	return (last);
 }
 
 void	stack_add_back(t_stack *stack, t_stack *new_node)

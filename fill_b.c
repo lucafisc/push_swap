@@ -6,17 +6,17 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:33:56 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/26 16:50:14 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:10:57 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	send_to_b(t_stack **a, t_stack **b, sort_params instructions, int limit)
+void	send_to_b(t_stack **a, t_stack **b, t_sort_params instruct, int limit)
 {
-	while ((*a)->value != instructions.value)
+	while ((*a)->value != instruct.value)
 	{
-		if (instructions.rotate)
+		if (instruct.rotate)
 			rotate(a, 'a');
 		else
 			reverse_rotate(a, 'a');
@@ -26,9 +26,9 @@ void	send_to_b(t_stack **a, t_stack **b, sort_params instructions, int limit)
 		rotate(b, 'b');
 }
 
-sort_params	get_first_match(t_stack *stack, int ceiling)
+t_sort_params	get_first_match(t_stack *stack, int ceiling)
 {
-	sort_params	first;
+	t_sort_params	first;
 
 	first.rotate = true;
 	first.index = -1;
@@ -45,9 +45,9 @@ sort_params	get_first_match(t_stack *stack, int ceiling)
 	return (first);
 }
 
-sort_params	get_last_match(t_stack *stack, int ceiling)
+t_sort_params	get_last_match(t_stack *stack, int ceiling)
 {
-	sort_params	last;
+	t_sort_params	last;
 
 	last.rotate = false;
 	last.index = -1;
@@ -65,11 +65,11 @@ sort_params	get_last_match(t_stack *stack, int ceiling)
 	return (last);
 }
 
-sort_params	get_optimal_move(t_stack *stack, int ceiling)
+t_sort_params	get_optimal_move(t_stack *stack, int ceiling)
 {
-	int			middle;
-	sort_params	first;
-	sort_params	last;
+	int				middle;
+	t_sort_params	first;
+	t_sort_params	last;
 
 	first = get_first_match(stack, ceiling);
 	last = get_last_match(stack, ceiling);
@@ -80,46 +80,11 @@ sort_params	get_optimal_move(t_stack *stack, int ceiling)
 		return (last);
 }
 
-int	cube(int x)
-{
-	int	result;
-	int	i;
-
-	i = 0;
-	result = 1;
-	while (i < 3)
-	{
-		result *= x;
-		i++;
-	}
-	return (result);
-}
-
-int	get_ratio(int length)
-{
-	if (length < 10)
-	{
-		return (1);
-	}
-	else if (length < 100)
-	{
-		return ((length - 10) * 0.04 + 1);
-	}
-	else if (length < 500)
-	{
-		return ((length - 100) * 0.02 + 14);
-	}
-	else
-	{
-		return ((length - 500) * 0.006 + 30);
-	}
-}
-
 void	fill_b(t_stack **a, t_stack **b, int length)
 {
-	int			ceiling;
-	int			ratio;
-	sort_params	instructions;
+	int				ceiling;
+	int				ratio;
+	t_sort_params	instructions;
 
 	ratio = get_ratio(length);
 	ceiling = get_min_value(*a);

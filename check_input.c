@@ -6,13 +6,13 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:40 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 17:17:33 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:06:34 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	is_valid_number(char *str)
+t_bool	is_valid_number(char *str)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ bool	is_valid_number(char *str)
 	return (true);
 }
 
-bool	is_duplicated(int *array, int c, int n)
+t_bool	is_duplicated(int *array, int c, int n)
 {
 	int	i;
 
@@ -42,12 +42,12 @@ bool	is_duplicated(int *array, int c, int n)
 	return (false);
 }
 
-bool	is_valid_integer(int n, char *argv[])
+t_bool	is_valid_integer(int n, char *argv[])
 {
 	int			*array;
 	int			i;
 	long int	x;
-	bool		is_valid;
+	t_bool		is_valid;
 
 	is_valid = true;
 	array = (int *)malloc(sizeof(int) * n);
@@ -68,7 +68,7 @@ bool	is_valid_integer(int n, char *argv[])
 	return (is_valid);
 }
 
-bool	is_valid_input(int n, char *argv[])
+t_bool	is_valid_input(int n, char *argv[])
 {
 	int	i;
 
