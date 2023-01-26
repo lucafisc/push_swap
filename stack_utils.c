@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:46:22 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/25 18:47:54 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 09:19:15 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,60 +88,6 @@ int get_third_max_value(t_stack *stack)
     }
     return third;
 }
-
-// sort_params	get_max_info(t_stack *stack)
-// {
-// 	sort_params max;
-// 	max.rotate = true;
-// 	max.value = stack->value;
-// 	int	middle;
-
-// 	max.found = false;
-// 	if (!stack)
-// 	{
-// 		max.value = 0;
-// 		max.index = 0;
-// 		return (max);
-// 	}
-// 	middle = get_stack_length(stack) / 2;
-// 	while (stack)
-// 	{
-// 		if (max.value < stack->value)
-// 		{
-// 			max.value  = stack->value;
-// 			max.index = stack->index;
-// 			max.found = true;
-// 		}
-// 		stack = stack->next;
-// 	}
-// 	if (max.found && max.index > middle)
-// 		max.rotate = false;
-// 	return (max);
-// }
-
-// sort_params	get_min_info(t_stack *stack)
-// {
-// 	sort_params min;
-// 	min.rotate = true;
-// 	min.value = stack->value;
-// 	int	middle;
-
-// 	min.found = false;
-// 	middle = get_stack_length(stack) / 2;
-// 	while (stack)
-// 	{
-// 		if (min.value > stack->value)
-// 		{
-// 			min.value  = stack->value;
-// 			min.index = stack->index;
-// 			min.found = true;
-// 		}
-// 		stack = stack->next;
-// 	}
-// 	if (min.found && min.index > middle)
-// 		min.rotate = false;
-// 	return (min);
-// }
 
 bool	is_sorted(t_stack *stack)
 {

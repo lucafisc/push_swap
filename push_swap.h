@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
+/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/25 18:42:19 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 09:40:38 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,8 @@ typedef struct {
   bool found;
 } sort_params;
 
-extern int count;
-
 int		main(int argc, char *argv[]);
-void	push_swap(int n, char *argv[]);
 bool	is_valid_input(int argc, char *argv[]);
-void	throw_error(void);
 
 //stack utils
 t_stack	*init_stack(int n, char *argv[]);
@@ -66,9 +62,6 @@ void	rotate(t_stack **stack, char x);
 void	reverse_rotate(t_stack **stack, char x);
 void	sort_three(t_stack **stack);
 void	sort_big(t_stack **a, int length);
-
-//helpers
-void	print_stack_info(t_stack *stack);
 
 sort_params	get_max_info(t_stack *stack);
 sort_params	get_min_info(t_stack *stack);
