@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:33:56 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/25 18:41:08 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:50:14 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,39 @@ sort_params	get_optimal_move(t_stack *stack, int ceiling)
 		return (last);
 }
 
+int	cube(int x)
+{
+	int	result;
+	int	i;
+
+	i = 0;
+	result = 1;
+	while (i < 3)
+	{
+		result *= x;
+		i++;
+	}
+	return (result);
+}
+
 int	get_ratio(int length)
 {
-	int	ratio;
-
 	if (length < 10)
-		ratio = 1;
+	{
+		return (1);
+	}
+	else if (length < 100)
+	{
+		return ((length - 10) * 0.04 + 1);
+	}
+	else if (length < 500)
+	{
+		return ((length - 100) * 0.02 + 14);
+	}
 	else
-		ratio = (length / 100 * 6) + 4;
-	return (ratio);
+	{
+		return ((length - 500) * 0.006 + 30);
+	}
 }
 
 void	fill_b(t_stack **a, t_stack **b, int length)

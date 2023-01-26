@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:29 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/26 09:26:34 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:32:03 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void throw_error(void)
+void	throw_error(void)
 {
 	ft_printf("Error");
 }
 
-void push_swap(int length, char *argv[])
+void	push_swap(int length, char *argv[])
 {
-	t_stack *a;
+	t_stack	*a;
 
 	a = init_stack(length, argv);
 	if (is_sorted(a))
-		return;
+		return ;
 	else if (length <= 3)
 		sort_three(&a);
 	else

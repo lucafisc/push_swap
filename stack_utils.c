@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lde-ross <lde-ross@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:46:22 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/26 09:19:15 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:31:23 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,33 @@ int	get_max_value(t_stack *stack)
 	return (value);
 }
 
-int get_third_max_value(t_stack *stack)
+int	get_third_max_value(t_stack *stack)
 {
-    int first;
+	int	first;
 	int	second;
 	int	third;
-	
-    first = INT_MIN;
+
+	first = INT_MIN;
 	second = INT_MIN;
 	third = INT_MIN;
-    while (stack)
-    {
-        if (stack->value > first)
-        {
-            third = second;
-            second = first;
-            first = stack->value;
-        }
-        else if (stack->value > second)
-        {
-            third = second;
-            second = stack->value;
-        }
-        else if (stack->value > third)
-        {
-            third = stack->value;
-        }
-        stack = stack->next;
-    }
-    return third;
+	while (stack)
+	{
+		if (stack->value > first)
+		{
+			third = second;
+			second = first;
+			first = stack->value;
+		}
+		else if (stack->value > second)
+		{
+			third = second;
+			second = stack->value;
+		}
+		else if (stack->value > third)
+			third = stack->value;
+		stack = stack->next;
+	}
+	return (third);
 }
 
 bool	is_sorted(t_stack *stack)

@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:42 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/19 17:07:36 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/26 13:45:29 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	print_cmd(char *str)
 {
 	static char	*cmd;
 
-	count++;
 	if (ft_strchr(str, ' ') && cmd)
 	{
 		ft_printf("%s\n", cmd);
