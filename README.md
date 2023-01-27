@@ -22,16 +22,16 @@ The program is limited to these commands to sort the numbers:
 
 | Command | Description |
 | --- | --- |
-| `sa` | swap the first two elements of the stack a. |
-| `ra` | rotate the stack a, move the first element to the bottom. |
-| `rra` | reverse rotate the stack a, move the last element to the top. |
 | `pa` | push the first element of stack b to the top of stack a. |
-| `sb` | swap the first two elements of the stack b. |
-| `rb` | rotate the stack b, move the first element to the bottom. |
-| `rrb` | reverse rotate the stack b, move the last element to the top. |
 | `pb` | push the first element of stack a to the top of stack b. |
+| `sa` | swap the first two elements of the stack a. |
+| `sb` | swap the first two elements of the stack b. |
 | `ss` | swap a and b |
+| `ra` | rotate the stack a, move the first element to the bottom. |
+| `rb` | rotate the stack b, move the first element to the bottom. |
 | `rr` | rotate both stacks |
+| `rra` | reverse rotate the stack a, move the last element to the top. |
+| `rrb` | reverse rotate the stack b, move the last element to the top. |
 | `rrr` | reverse rotate both stacks |
 
 ## Usage
