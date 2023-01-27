@@ -6,7 +6,7 @@
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 15:59:58 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/26 18:09:41 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:53:46 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				get_min_value(t_stack *stack);
 int				get_max_value(t_stack *stack);
 int				get_third_max_value(t_stack *stack);
 int				get_ratio(int length);
+int				map_number(int length, char *argv[], int i);
 void			stack_update_index(t_stack **stack);
 void			clear_stack(t_stack **stack);
 void			print_cmd(char *str);

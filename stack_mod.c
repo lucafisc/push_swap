@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack_mod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-ross < lde-ross@student.42berlin.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 15:29:01 by lde-ross          #+#    #+#             */
-/*   Updated: 2023/01/26 17:51:11 by lde-ross         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:51:03 by lde-ross         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ void	clear_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-t_stack	*init_stack(int n, char *argv[])
+t_stack	*init_stack(int length, char *argv[])
 {
 	t_stack	*stack;
 	int		i;
 	int		number;
 
 	i = 1;
-	while (i <= n)
+	while (i <= length)
 	{
-		number = ft_atoi(argv[i]);
+		number = map_number(length, argv, i);
 		if (i == 1)
 			stack = new_stack(number, i - 1);
 		else

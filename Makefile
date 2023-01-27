@@ -1,4 +1,4 @@
-FILES = main.c check_input.c stack_utils.c commands.c print_cmd.c sort_three.c stack_mod.c ratio.c sort_big.c fill_b.c return_to_a.c is_sorted.c stack_last.c
+FILES = main.c check_input.c stack_utils.c commands.c print_cmd.c sort_three.c stack_mod.c ratio.c sort_big.c fill_b.c return_to_a.c is_sorted.c stack_last.c map.c
 OBJECTS = $(addprefix obj/, $(FILES:.c=.o))
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -ggdb3
