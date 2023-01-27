@@ -1,5 +1,8 @@
-# Push Swap
+<h1 align="center">push_swap</h1>
 
+<p align="center">
+<img src="https://i.imgur.com/XUaDkkE.png" alt="drawing" width="120"/>
+</p>
 This project is a sorting algorithm project from the 42 School curriculum. The goal is to sort an array of integers using only very limited operations.
 
 - [Available Commands](#available-commands)
