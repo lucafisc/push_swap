@@ -48,7 +48,7 @@ You can see an animation of how the algorithm works using the visualizer found i
 
 ## My Stats
 
-| Numbers | Operations |
+| Numbers | Average no. of commands |
 | --- | --- |
 | 5 | 7 |
 | 100 | 605 |
