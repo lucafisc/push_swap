@@ -9,8 +9,8 @@ This project is a sorting algorithm project from the 42 School curriculum. The g
 - [How it works](#how-it-works)
 - [Available Commands](#available-commands)
 - [Usage](#usage)
-- [My Stats](#my-stats)
 - [Visualizer](#visualizer)
+- [My Stats](#my-stats)
 
 ## How it works
 
@@ -38,6 +38,12 @@ The program is limited to these commands to sort the numbers:
 
 To use the sorting program, compile the files with the command `make`. Then, run the program with the command `./push_swap [int1 int2 int3 ...]`. The program will output the sequence of commands needed to sort the array.
 
+## Visualizer
+
+You can see an animation of how the algorithm works using the visualizer found in this repo: https://github.com/o-reo/push_swap_visualizer
+
+![Visualizer](https://i.imgur.com/Aus5PDh.gif "Visualizer")
+
 ## My Stats
 
 | Numbers | Operations |
@@ -48,8 +54,3 @@ To use the sorting program, compile the files with the command `make`. Then, run
 
 I got the highscore in the stats (means my algorithm used very few commands) and tested with this repo: https://github.com/louisabricot/push_swap_tester
 
-## Visualizer
-
-You can see an animation of how the algorithm works using the visualizer found in this repo: https://github.com/o-reo/push_swap_visualizer
-
-![Visualizer](https://i.imgur.com/Aus5PDh.gif "Visualizer")
