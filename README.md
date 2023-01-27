@@ -3,7 +3,8 @@
 <p align="center">
 <img src="https://i.imgur.com/XUaDkkE.png" alt="drawing" width="120"/>
 </p>
-This project is a sorting algorithm project from the 42 School curriculum. The goal is to sort an array of integers using only very limited operations.
+This project is a sorting algorithm project from the 42 School curriculum. The goal is to sort an array of integers using only very limited operations. To learn more about the algorithm you can check [my article on medium about it.](https://medium.com/@lucafischer_11396/two-stacks-one-goal-understanding-the-push-swap-algorithm-e08e5986f657)
+
 
 
 - [How it works](#how-it-works)
