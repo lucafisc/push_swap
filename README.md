@@ -50,9 +50,9 @@ You can see an animation of how the algorithm works using the visualizer found i
 
 | Numbers | Operations |
 | --- | --- |
-| 8 | X |
-| 100 | Y |
-| 500 | Z |
+| 5 | 7 |
+| 100 | 605 |
+| 500 | 5219 |
 
 I got the highscore in the stats (means my algorithm used very few commands) and tested with this repo: https://github.com/louisabricot/push_swap_tester
 
