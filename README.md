@@ -5,14 +5,17 @@
 </p>
 This project is a sorting algorithm project from the 42 School curriculum. The goal is to sort an array of integers using only very limited operations.
 
+- [How it works](#how-it-works)
 - [Available Commands](#available-commands)
 - [Usage](#usage)
 - [My Stats](#my-stats)
 - [Visualizer](#visualizer)
 
+## How it works
+
 The program takes an array of integers as an argument and sorts it using the push swap algorithm. The algorithm is composed of two stacks, named `a` and `b`. `a` initially contains a random number of positive or negative integers without any duplicates, and `b` is empty. The goal is to sort the numbers in `a` in ascending order.
 
-## Available Commands
+### Available Commands
 
 The program is limited to these commands to sort the numbers:
 
