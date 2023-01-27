@@ -5,6 +5,7 @@
 </p>
 This project is a sorting algorithm project from the 42 School curriculum. The goal is to sort an array of integers using only very limited operations.
 
+
 - [How it works](#how-it-works)
 - [Available Commands](#available-commands)
 - [Usage](#usage)
