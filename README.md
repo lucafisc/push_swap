@@ -36,7 +36,7 @@ The program is limited to these commands to sort the numbers:
 
 ## Usage
 
-To use the sorting program, compile the files with the command `make`. Then, run the program with the command `./push_swap [int1 int2 int3 ...]`. The program will output the sequence of commands needed to sort the array.
+To use the sorting program, compile the files with the command `make`. Then, run the program with the command `./push_swap int1 int2 int3 ...`. The program will output the sequence of commands needed to sort the array.
 
 ## Visualizer
 
