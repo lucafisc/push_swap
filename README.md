@@ -51,3 +51,5 @@ I got the highscore in the stats (means my algorithm used very few commands) and
 ## Visualizer
 
 You can see an animation of how the algorithm works using the visualizer found in this repo: https://github.com/o-reo/push_swap_visualizer
+
+![Visualizer](https://i.imgur.com/Aus5PDh.gif "Visualizer")
