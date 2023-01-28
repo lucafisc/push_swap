@@ -4,7 +4,7 @@
 <img src="https://i.imgur.com/XUaDkkE.png" alt="drawing" width="120"/>
 </p>
 
->[Check out my medium article to understand how the algorith works](https://medium.com/@lucafischer_11396/two-stacks-one-goal-understanding-the-push-swap-algorithm-e08e5986f657)
+>[Check out my article on medium to understand how the algorith works](https://medium.com/@lucafischer_11396/two-stacks-one-goal-understanding-the-push-swap-algorithm-e08e5986f657)
 
 [![lde-ross's 42 push_swap Score](https://badge42.vercel.app/api/v2/clcrkbbp700300fkxp8nykj3n/project/2929110)](https://github.com/JaeSeoKim/badge42)
 
