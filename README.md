@@ -18,17 +18,6 @@ This project is a sorting algorithm project from the 42 School curriculum. The g
 
 ## How it works
 
-First clone this repository:
-
-```
-git clone git@github.com:lucafisc/push_swap.git
-```
-
-Enter the directory:
-
-```
-cd push_swap
-```
 
 The program takes an array of integers as an argument and sorts it using the push swap algorithm. The algorithm is composed of two stacks, named `a` and `b`. `a` initially contains a random number of positive or negative integers without any duplicates, and `b` is empty. The goal is to sort the numbers in `a` in ascending order.
 
@@ -52,7 +41,19 @@ The program is limited to these commands to sort the numbers:
 
 ## Usage
 
-To use the sorting program, compile the files with the command `make`. Then, run the program with the command `./push_swap int1 int2 int3 ...`. The program will output the sequence of commands needed to sort the array.
+First clone this repository:
+
+```
+git clone git@github.com:lucafisc/push_swap.git
+```
+
+Enter the directory:
+
+```
+cd push_swap
+```
+
+To start the sorting program, frist compile the files with the command `make`. Then, run the program with the command `./push_swap int1 int2 int3 ...`. The program will output the sequence of commands needed to sort the array.
 
 ## Visualizer
 
