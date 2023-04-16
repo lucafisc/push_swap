@@ -63,7 +63,5 @@ t_bool			is_valid_input(int argc, char *argv[]);
 t_stack			*init_stack(int n, char *argv[]);
 t_stack			*stack_get_last(t_stack *stack);
 t_stack			*stack_get_second_last(t_stack *stack);
-t_sort_params	get_max_info(t_stack *stack);
-t_sort_params	get_min_info(t_stack *stack);
 
 #endif

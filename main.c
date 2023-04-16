@@ -23,7 +23,10 @@ void	push_swap(int length, char *argv[])
 
 	a = init_stack(length, argv);
 	if (is_sorted(a))
+	{
+		clear_stack(&a);
 		return ;
+	}
 	else if (length <= 3)
 		sort_three(&a);
 	else
